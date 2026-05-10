@@ -5,914 +5,1040 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pre-Factibilidad Urbana — CABA</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-:root {
-  --bg:#f0f2f5;
+:root{
+  --bg:#f2f1ee;
   --white:#ffffff;
-  --ink:#111318;
-  --ink-mid:#4a5263;
-  --ink-soft:#8a93a6;
-  --rule:#dde1e9;
-  --accent:#1847d4;
-  --accent-dim:#dce8ff;
-  --warn:#c92020;
-  --warn-dim:#fdeaea;
-  --ok:#0d7a55;
-  --ok-dim:#d4f4e7;
-  --amber:#b45309;
-  --amber-dim:#fef4d6;
-  --form-bg:#1a1e2b;
-  --form-border:#2c3347;
-  --form-input:#252a3a;
-  --form-label:#8a93a6;
-  --form-accent:#4f80ff;
-  --empty:#e8ebf0;
+  --ink:#0e0f13;
+  --ink-mid:#454850;
+  --ink-soft:#8c8f99;
+  --rule:#dddbd6;
+  --accent:#1a3caa;
+  --accent-light:#dce6ff;
+  --warn:#b91c1c;
+  --warn-light:#fee2e2;
+  --ok:#065f46;
+  --ok-light:#d1fae5;
+  --amber:#92400e;
+  --amber-light:#fef3c7;
+  --form-bg:#0e0f13;
+  --form-border:#1e2130;
+  --form-input:#161820;
+  --form-accent:#3b6bff;
+  --empty:#e2e0db;
+  --header-stripe:#1a3caa;
 }
 
-body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:13.5px;line-height:1.6}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-mono{font-family:'IBM Plex Mono',monospace}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:13.5px;line-height:1.65}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+
+/* ══ SCREEN-ONLY ELEMENTS ══ */
+.screen-only{} 
 
 /* ══ TOP BAR ══ */
-.topbar{background:var(--form-bg);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--form-border)}
-.topbar-logo{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#fff;letter-spacing:.05em}
-.topbar-logo span{color:var(--form-accent)}
-.topbar-note{font-size:11px;color:#5a6278;font-family:'IBM Plex Mono',monospace}
+.topbar{
+  background:var(--form-bg);
+  padding:13px 36px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:2px solid var(--header-stripe);
+}
+.topbar-logo{
+  font-family:'Fraunces',serif;
+  font-size:17px;font-weight:300;
+  color:#fff;letter-spacing:.03em;
+}
+.topbar-logo em{color:var(--form-accent);font-style:normal}
+.topbar-actions{display:flex;align-items:center;gap:10px}
+.topbar-note{font-family:'DM Mono',monospace;font-size:10px;color:#3d4260}
+.btn-pdf{
+  background:var(--form-accent);color:#fff;border:none;
+  border-radius:5px;padding:8px 18px;
+  font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;
+  cursor:pointer;display:flex;align-items:center;gap:6px;
+  transition:background .15s,transform .1s;
+}
+.btn-pdf:hover{background:#2a57e8}.btn-pdf:active{transform:scale(.97)}
 
 /* ══ FORM PANEL ══ */
-.form-panel{background:var(--form-bg);padding:28px 32px 32px;border-bottom:3px solid var(--form-accent)}
-.form-panel h2{font-size:15px;font-weight:500;color:#fff;margin-bottom:4px}
-.form-panel .form-sub{font-size:12px;color:#5a6278;margin-bottom:24px}
+.form-panel{
+  background:var(--form-bg);
+  padding:28px 36px 32px;
+  border-bottom:1px solid var(--form-border);
+}
+.form-panel-header{margin-bottom:22px}
+.form-panel-header h2{
+  font-family:'Fraunces',serif;font-size:19px;font-weight:300;
+  color:#fff;letter-spacing:.01em;margin-bottom:3px;
+}
+.form-panel-header p{font-size:11.5px;color:#3d4260}
+.form-panel-header p span{color:var(--form-accent)}
 
-.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px 20px}
-.form-group{display:flex;flex-direction:column;gap:5px}
-.form-group.wide{grid-column:span 2}
-.form-group.full{grid-column:1/-1}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px 18px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.w2{grid-column:span 2}.fg.wall{grid-column:1/-1}
+.fsec{
+  grid-column:1/-1;
+  font-family:'DM Mono',monospace;font-size:9px;
+  text-transform:uppercase;letter-spacing:.16em;
+  color:var(--form-accent);margin-top:8px;padding-bottom:4px;
+  border-bottom:1px solid var(--form-border);
+}
+.fdiv{grid-column:1/-1;border:none;border-top:1px solid var(--form-border);margin:2px 0}
 
-label{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--form-label);font-family:'IBM Plex Mono',monospace}
+label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:.1em;color:#5a6278;
+}
 label .req{color:var(--form-accent)}
-label .hint{font-size:9.5px;color:#3d4560;text-transform:none;letter-spacing:0;display:block;margin-top:1px}
-
+label .hint{
+  font-family:'DM Sans',sans-serif;font-size:10.5px;
+  text-transform:none;letter-spacing:0;
+  color:#2e3450;display:block;margin-top:1px;
+}
 input,select{
-  background:var(--form-input);
-  border:1px solid var(--form-border);
-  border-radius:5px;
-  padding:9px 12px;
-  color:#e8ecf5;
-  font-family:'IBM Plex Sans',sans-serif;
-  font-size:13px;
-  transition:border .15s;
-  width:100%;
+  background:var(--form-input);border:1px solid var(--form-border);
+  border-radius:4px;padding:9px 11px;
+  color:#cdd5f0;font-family:'DM Sans',sans-serif;font-size:13px;
+  transition:border .15s;width:100%;
 }
 input:focus,select:focus{outline:none;border-color:var(--form-accent)}
-input::placeholder{color:#3d4560}
-select option{background:#1a1e2b}
-
-.form-divider{
-  grid-column:1/-1;
-  border:none;
-  border-top:1px solid var(--form-border);
-  margin:4px 0;
+input::placeholder{color:#2a2f45}
+select option{background:#161820}
+textarea{
+  background:var(--form-input);border:1px solid var(--form-border);
+  border-radius:4px;padding:9px 11px;color:#cdd5f0;
+  font-family:'DM Sans',sans-serif;font-size:13px;
+  width:100%;resize:vertical;min-height:72px;
+  transition:border .15s;
 }
-.form-section-label{
-  grid-column:1/-1;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.15em;
-  color:var(--form-accent);
-  margin-top:6px;
-}
+textarea:focus{outline:none;border-color:var(--form-accent)}
+textarea::placeholder{color:#2a2f45}
 
-.btn-generate{
-  margin-top:22px;
-  background:var(--form-accent);
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  padding:12px 32px;
-  font-family:'IBM Plex Sans',sans-serif;
-  font-size:14px;
-  font-weight:500;
-  cursor:pointer;
+.btn-gen{
+  margin-top:20px;
+  background:var(--form-accent);color:#fff;border:none;
+  border-radius:5px;padding:12px 30px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;
+  cursor:pointer;display:inline-flex;align-items:center;gap:8px;
   transition:background .15s,transform .1s;
-  display:flex;align-items:center;gap:8px;
 }
-.btn-generate:hover{background:#3265f0}
-.btn-generate:active{transform:scale(.98)}
-.btn-generate svg{transition:transform .2s}
-.btn-generate:hover svg{transform:translateX(3px)}
+.btn-gen:hover{background:#2a57e8}.btn-gen:active{transform:scale(.98)}
+.form-footer-note{font-size:11px;color:#2e3450;margin-top:10px;line-height:1.7}
+.form-footer-note a{color:#4f6aaa}
 
-.form-note{font-size:11px;color:#3d4560;margin-top:10px;line-height:1.6}
-.form-note a{color:#4f6aaa}
-
-/* ══ UVA LIVE STRIP ══ */
+/* ══ UVA STRIP ══ */
 .uva-strip{
-  background:var(--white);
-  border-bottom:1px solid var(--rule);
-  padding:10px 32px;
-  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  background:var(--white);border-bottom:1px solid var(--rule);
+  padding:11px 36px;
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
 }
-.uva-block{display:flex;flex-direction:column;gap:1px}
-.uva-key{font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft)}
-.uva-val{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:500}
-.uva-val.blue{color:var(--accent)}
-.uva-val.green{color:var(--ok)}
-.uva-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;display:flex;align-items:center;gap:5px}
-.uva-badge.live{background:var(--ok-dim);color:var(--ok)}
-.uva-badge.error{background:var(--warn-dim);color:var(--warn)}
-.uva-badge.loading{background:#f0f2f5;color:var(--ink-soft)}
+.ub{display:flex;flex-direction:column;gap:1px}
+.uk{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft)}
+.uv{font-family:'DM Mono',monospace;font-size:18px;font-weight:500}
+.uv.blue{color:var(--accent)}.uv.green{color:var(--ok)}
+.ubadge{font-family:'DM Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;display:flex;align-items:center;gap:5px}
+.ubadge.live{background:var(--ok-light);color:var(--ok)}
+.ubadge.err{background:var(--warn-light);color:var(--warn)}
+.ubadge.load{background:#ede9e3;color:var(--ink-soft)}
 .dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
-.uva-link{margin-left:auto;font-size:11px;color:var(--accent);white-space:nowrap}
+.ulink{margin-left:auto;font-size:11px;color:var(--accent)}
 
-/* ══ REPORT BODY ══ */
-.report-body{max-width:960px;margin:24px auto;padding:0 24px 60px;display:flex;flex-direction:column;gap:18px}
+/* ══ REPORT ══ */
+.report{max-width:940px;margin:28px auto;padding:0 24px 60px;display:flex;flex-direction:column;gap:18px}
 
-/* ══ REPORT HEADER CARD ══ */
-.report-header-card{
-  background:var(--ink);
-  border-radius:8px;
-  padding:20px 24px;
-  color:#fff;
+/* ══ REPORT HEADER ══ */
+.rh{
+  background:var(--ink);border-radius:8px;overflow:hidden;
   position:relative;
-  overflow:hidden;
 }
-.report-header-card::before{
-  content:'';position:absolute;top:0;right:0;width:200px;height:100%;
-  background:linear-gradient(135deg,transparent 60%,rgba(72,110,255,.15));
+.rh-accent-bar{height:4px;background:linear-gradient(90deg,var(--header-stripe),#4f80ff)}
+.rh-inner{padding:22px 26px 20px;position:relative}
+.rh-inner::after{
+  content:'';position:absolute;right:0;top:0;width:260px;height:100%;
+  background:radial-gradient(ellipse at right,rgba(59,107,255,.12) 0%,transparent 70%);
   pointer-events:none;
 }
-.rhc-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.15em;color:#5a6278;margin-bottom:6px}
-.rhc-title{font-size:18px;font-weight:500;margin-bottom:10px;min-height:26px}
-.rhc-pills{display:flex;flex-wrap:wrap;gap:8px}
-.rhc-pill{font-family:'IBM Plex Mono',monospace;font-size:10.5px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:3px 10px;color:#9ba8c0}
-.rhc-pill.empty{color:#333a4d;border-color:#252a3a}
+.rh-pretitle{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:#3d4260;margin-bottom:6px}
+.rh-title{font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:#fff;margin-bottom:12px;min-height:30px}
+.rh-pills{display:flex;flex-wrap:wrap;gap:7px}
+.rh-pill{font-family:'DM Mono',monospace;font-size:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:3px;padding:3px 9px;color:#7a85a3}
+.rh-pill.empty{color:#1e2130;border-color:#1e2130}
+.rh-date{font-family:'DM Mono',monospace;font-size:9px;color:#2e3450;margin-top:12px}
 
-/* ══ ALERT BAR ══ */
-.alert-bar{
-  border-radius:6px;padding:11px 16px;display:flex;align-items:flex-start;gap:10px;font-size:12.5px;border:1px solid;
-}
-.alert-bar.warn{background:var(--warn-dim);border-color:#f5aaaa;color:#8b1010;border-left:4px solid var(--warn)}
-.alert-bar.info{background:var(--accent-dim);border-color:#aac2f5;color:#1236a0;border-left:4px solid var(--accent)}
-.alert-bar.hidden{display:none}
-.alert-icon{flex-shrink:0;margin-top:1px}
+/* ══ ALERT BARS ══ */
+.abar{border-radius:6px;padding:11px 16px;display:flex;align-items:flex-start;gap:10px;font-size:12.5px;border:1px solid}
+.abar.warn{background:var(--warn-light);border-color:#fca5a5;color:#7f1d1d;border-left:4px solid var(--warn)}
+.abar.info{background:var(--accent-light);border-color:#93c5fd;color:#1e3a8a;border-left:4px solid var(--accent)}
+.abar.hidden{display:none}
+.abar svg{flex-shrink:0;margin-top:1px}
 
 /* ══ SECTION CARD ══ */
-.section-card{background:var(--white);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
-.section-head{
+.sc{background:var(--white);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.sc-head{
   display:flex;align-items:center;justify-content:space-between;
-  padding:13px 20px;background:var(--ink);color:#fff;cursor:pointer;user-select:none;
+  padding:13px 20px;background:var(--ink);color:#fff;
+  cursor:pointer;user-select:none;
 }
-.section-head:hover{background:#1d2130}
-.sh-left{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:400}
-.sh-num{font-family:'IBM Plex Mono',monospace;font-size:9.5px;background:rgba(255,255,255,.1);padding:2px 8px;border-radius:3px;color:#9ba8c0}
-.sh-right{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5a6278}
-.chevron{transition:transform .2s}
-.section-card.open .chevron{transform:rotate(180deg)}
-.section-body{display:none}
-.section-card.open .section-body{display:block}
+.sc-head:hover{background:#1a1d26}
+.sc-left{display:flex;align-items:center;gap:10px;font-size:13px}
+.sc-num{font-family:'DM Mono',monospace;font-size:9px;background:rgba(255,255,255,.09);padding:2px 7px;border-radius:3px;color:#7a85a3}
+.sc-right{display:flex;align-items:center;gap:7px;font-family:'DM Mono',monospace;font-size:10px;color:#3d4260}
+.chev{transition:transform .2s}
+.sc.open .chev{transform:rotate(180deg)}
+.sc-body{display:none}
+.sc.open .sc-body{display:block}
 
 /* ══ PARAM TABLE ══ */
-.ptable{width:100%;border-collapse:collapse}
-.ptable tr{border-bottom:1px solid var(--rule)}
-.ptable tr:last-child{border-bottom:none}
-.ptable tr:hover{background:#f8f9fb}
-.ptable td{padding:11px 20px;vertical-align:top;font-size:13px}
-.td-lbl{width:230px;font-weight:500;color:var(--ink-mid)}
-.td-val{color:var(--ink)}
-.td-ref{width:150px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);text-align:right}
-
-/* ══ EMPTY STATE ══ */
-.e{
-  display:inline-block;
-  background:var(--empty);
-  border-radius:3px;
-  height:14px;
-  vertical-align:middle;
-}
-.e-sm{width:60px}
-.e-md{width:120px}
-.e-lg{width:180px}
-.e-xl{width:240px}
-.e-line{display:block;width:100%;height:13px;border-radius:3px;background:var(--empty);margin:2px 0}
+.pt{width:100%;border-collapse:collapse}
+.pt tr{border-bottom:1px solid var(--rule)}
+.pt tr:last-child{border-bottom:none}
+.pt tr:hover{background:#f7f6f3}
+.pt td{padding:11px 20px;vertical-align:top;font-size:13px}
+.tdl{width:230px;font-weight:500;color:var(--ink-mid)}
+.tdv{color:var(--ink)}
+.tdr{width:145px;font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-soft);text-align:right}
 
 /* ══ TAGS ══ */
-.tag{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:3px;margin-top:2px}
-.tag-warn{background:var(--warn-dim);color:var(--warn);border:1px solid #f5aaaa}
-.tag-ok{background:var(--ok-dim);color:var(--ok);border:1px solid #8cdabb}
-.tag-info{background:var(--accent-dim);color:var(--accent);border:1px solid #aac2f5}
-.tag-neutral{background:#f0f2f5;color:var(--ink-mid);border:1px solid var(--rule)}
-.tag-empty{background:var(--empty);color:transparent;border:1px solid transparent;width:90px;height:20px}
+.tag{display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:10px;padding:2px 8px;border-radius:3px;margin-top:2px}
+.tok{background:var(--ok-light);color:var(--ok);border:1px solid #6ee7b7}
+.twarn{background:var(--warn-light);color:var(--warn);border:1px solid #fca5a5}
+.tinfo{background:var(--accent-light);color:var(--accent);border:1px solid #93c5fd}
+.tneu{background:#edebe6;color:var(--ink-mid);border:1px solid var(--rule)}
+.tempty{background:var(--empty);color:transparent;border:1px solid transparent;width:100px;height:20px;border-radius:3px}
 
-/* ══ DYNAMIC UVA ROW ══ */
-.uva-row{background:#f5f8ff;border-left:3px solid var(--accent)}
-.uva-row:hover{background:#edf3ff !important}
-.sub-note{font-size:11px;color:var(--ink-soft);margin-top:3px}
-.sub-note a{font-size:11px}
+/* ══ UVA DYNAMIC ROW ══ */
+.uvrow{background:#f0f4ff;border-left:3px solid var(--accent)}
+.uvrow:hover{background:#e8efff !important}
+.subnote{font-size:11px;color:var(--ink-soft);margin-top:3px}
+.subnote a{font-size:11px}
+
+/* ══ DIST TABLE ══ */
+.dist-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:1px;background:var(--rule);border-top:1px solid var(--rule);
+}
+.dist-cell{background:var(--white);padding:13px 18px}
+.dist-label{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:3px}
+.dist-val{font-family:'DM Mono',monospace;font-size:15px;font-weight:500;color:var(--ink)}
+.dist-note{font-size:10.5px;color:var(--ink-soft);margin-top:2px}
 
 /* ══ ECON TABLE ══ */
-.etable{width:100%;border-collapse:collapse;font-size:13px}
-.etable thead tr{background:#f5f6f9;border-bottom:2px solid var(--rule)}
-.etable thead td{padding:9px 20px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-mid)}
-.etable tbody tr{border-bottom:1px solid var(--rule)}
-.etable tbody tr:hover{background:#f9fafb}
-.etable tbody td{padding:10px 20px}
-.etable .cat-row td{background:#f5f6f9;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-mid);padding:7px 20px}
-.etable .sub-row{background:#f8f9fb;font-weight:600}
-.etable .total-row{background:var(--ink);color:#fff;font-weight:600;font-size:14px}
-.etable .total-row:hover{background:var(--ink) !important}
-.etable .plus-row{background:#fffbeb;border-left:3px solid var(--amber)}
-.etable .plus-row:hover{background:#fef9ec !important}
-.num{text-align:right;font-family:'IBM Plex Mono',monospace}
-.num-pos{color:var(--ok)}
-.num-neg{color:var(--warn)}
+.et{width:100%;border-collapse:collapse;font-size:13px}
+.et thead tr{background:#f0efea;border-bottom:2px solid var(--rule)}
+.et thead td{padding:9px 20px;font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-mid)}
+.et tbody tr{border-bottom:1px solid var(--rule)}
+.et tbody tr:hover{background:#f7f6f3}
+.et tbody td{padding:10px 20px}
+.et .catr td{background:#f0efea;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-mid);padding:7px 20px}
+.et .subr{background:#f5f4f0;font-weight:600}
+.et .totr{background:var(--ink);color:#fff;font-weight:600;font-size:14px}
+.et .totr:hover{background:var(--ink) !important}
+.et .plusr{background:#fffbeb;border-left:3px solid #d97706}
+.et .plusr:hover{background:#fef9ec !important}
+.nr{text-align:right;font-family:'DM Mono',monospace}
+.npos{color:var(--ok)}.nneg{color:var(--warn)}
 
 /* ══ KPI GRID ══ */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:1px;background:var(--rule)}
-.kpi-cell{background:var(--white);padding:16px 20px}
-.kpi-key{font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:4px}
-.kpi-v{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:500;color:var(--ink);min-height:26px}
-.kpi-v.blue{color:var(--accent)}
-.kpi-v.green{color:var(--ok)}
-.kpi-v.red{color:var(--warn)}
-.kpi-sub{font-size:10px;color:var(--ink-soft);margin-top:3px}
+.kg{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:1px;background:var(--rule)}
+.kc{background:var(--white);padding:16px 18px}
+.kk{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);margin-bottom:4px}
+.kv{font-family:'DM Mono',monospace;font-size:16px;font-weight:500;color:var(--ink);min-height:24px}
+.kv.blue{color:var(--accent)}.kv.green{color:var(--ok)}.kv.red{color:var(--warn)}
+.ks{font-size:10px;color:var(--ink-soft);margin-top:2px}
 
-/* ══ ALERTS LIST ══ */
-.alert-list{padding:16px 20px;display:flex;flex-direction:column;gap:8px}
-.al-item{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;padding:10px 14px;border-radius:5px;border:1px solid}
-.al-item.red{background:var(--warn-dim);border-color:#f5aaaa;color:#8b1010}
-.al-item.amber{background:var(--amber-dim);border-color:#f5d17a;color:#7c3d0a}
-.al-item.green{background:var(--ok-dim);border-color:#8cdabb;color:#084f37}
-.al-num{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;min-width:16px}
+/* ══ TECH TABLE ══ */
+.tech-2col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border-top:1px solid var(--rule)}
+.tech-cell{background:var(--white);padding:13px 18px}
+.tech-key{font-weight:500;color:var(--ink-mid);font-size:12.5px;margin-bottom:3px}
+.tech-val{font-size:12.5px;color:var(--ink)}
+.tech-note{font-size:10.5px;color:var(--ink-soft);margin-top:2px}
+
+/* ══ SERVICES TABLE ══ */
+.srv-table{width:100%;border-collapse:collapse;font-size:13px}
+.srv-table tr{border-bottom:1px solid var(--rule)}
+.srv-table tr:last-child{border-bottom:none}
+.srv-table tr:hover{background:#f7f6f3}
+.srv-table td{padding:11px 20px;vertical-align:top}
+.srv-table .s-empresa{font-weight:500;color:var(--ink-mid);width:180px}
+.srv-table .s-empresa small{display:block;font-family:'DM Mono',monospace;font-size:10px;font-weight:400;color:var(--ink-soft)}
+
+/* ══ ALERT LIST ══ */
+.alist{padding:16px 20px;display:flex;flex-direction:column;gap:8px}
+.ai{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;padding:10px 14px;border-radius:5px;border:1px solid}
+.ai.red{background:var(--warn-light);border-color:#fca5a5;color:#7f1d1d}
+.ai.amber{background:var(--amber-light);border-color:#fcd34d;color:#78350f}
+.ai.green{background:var(--ok-light);border-color:#6ee7b7;color:#064e3b}
+.ai-n{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;min-width:16px}
+
+/* ══ OBSERVATIONS ══ */
+.obs-area{padding:16px 20px}
+.obs-area textarea{
+  background:#f7f6f3;border:1px solid var(--rule);
+  color:var(--ink);border-radius:4px;padding:10px 12px;
+  font-family:'DM Sans',sans-serif;font-size:13px;
+  width:100%;min-height:80px;resize:vertical;
+}
+.obs-area textarea:focus{outline:none;border-color:var(--accent)}
+
+/* ══ SKELETON ══ */
+.e{display:inline-block;background:var(--empty);border-radius:3px;height:14px;vertical-align:middle}
+.esm{width:55px}.emd{width:110px}.elg{width:175px}.exl{width:230px}
+.eline{display:block;width:100%;height:13px;border-radius:3px;background:var(--empty);margin:2px 0}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:.9}}
+.skeleton .e,.skeleton .eline,.skeleton .tempty{animation:pulse 1.8s ease-in-out infinite}
 
 /* ══ FOOTER ══ */
-.doc-footer{max-width:960px;margin:0 auto;padding:0 24px 40px;font-size:11px;color:var(--ink-soft);line-height:1.8;border-top:1px solid var(--rule);padding-top:16px}
+.doc-footer{max-width:940px;margin:0 auto;padding:0 24px 40px;font-size:11px;color:var(--ink-soft);line-height:1.8;border-top:1px solid var(--rule);padding-top:14px}
 
 /* ══ SPINNER ══ */
 @keyframes spin{to{transform:rotate(360deg)}}
-.spinner{display:inline-block;width:11px;height:11px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;opacity:.5}
+.spin{display:inline-block;width:11px;height:11px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;opacity:.5}
 
-/* ══ PULSE (skeleton animation) ══ */
-@keyframes pulse{0%,100%{opacity:.5}50%{opacity:.9}}
-.skeleton .e,.skeleton .e-line{animation:pulse 1.6s ease-in-out infinite}
+/* ════════════════════════════════
+   PRINT / PDF STYLES
+   ════════════════════════════════ */
+@media print {
+  @page{margin:18mm 16mm;size:A4}
 
-/* ══ GENERATED state ══ */
-.filled .e,.filled .e-line{display:none}
+  /* hide UI chrome */
+  .topbar,.form-panel,.uva-strip,.btn-pdf,.screen-only,
+  .sc-head .chev,
+  .abar.info{display:none !important}
+
+  body{background:#fff;font-size:12px;color:#000;font-family:'DM Sans',sans-serif}
+
+  /* force all sections open */
+  .sc-body{display:block !important}
+  .sc{page-break-inside:avoid;border:1px solid #ccc;border-radius:0;margin-bottom:10px;break-inside:avoid}
+  .sc-head{background:#0e0f13 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:10px 16px}
+  .sc-left{font-size:12px}
+  .sc-num{font-size:9px}
+
+  /* report header */
+  .rh{-webkit-print-color-adjust:exact;print-color-adjust:exact;border-radius:0;margin-bottom:10px}
+  .rh-accent-bar{height:3px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .rh-title{font-size:18px}
+
+  /* PDF header block shown only in print */
+  .pdf-header{display:block !important}
+
+  /* tables */
+  .pt td,.et td,.srv-table td{padding:7px 14px}
+  .et thead tr,.et .catr td,.et .subr,.et .totr{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  /* kpi grid */
+  .kg{grid-template-columns:repeat(4,1fr)}
+  .kc{padding:10px 14px}
+  .kv{font-size:14px}
+
+  /* dist */
+  .dist-grid{grid-template-columns:repeat(3,1fr)}
+
+  /* tech */
+  .tech-2col{grid-template-columns:1fr 1fr}
+
+  /* alert bars */
+  .abar.warn{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  /* alert list */
+  .ai{-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:7px 12px}
+
+  /* tags */
+  .tok,.twarn,.tinfo,.tneu{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  /* uva strip — show compact version in print */
+  .uva-print{display:flex !important}
+
+  /* page breaks */
+  .report{gap:10px}
+  #sec5,#sec6{page-break-before:always}
+
+  /* footer */
+  .doc-footer{font-size:10px;padding:8px 0}
+
+  /* obs */
+  .obs-area textarea{border:1px solid #ccc;background:#f9f9f9;min-height:50px}
+}
 </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-logo">URBAN<span>.</span>FACT</div>
-  <div class="topbar-note">Pre-factibilidad urbana · CABA · Normativa vigente al 31/12/2024</div>
+<div class="topbar screen-only">
+  <div class="topbar-logo">Urban<em>.</em>Fact</div>
+  <div class="topbar-actions">
+    <div class="topbar-note">Pre-factibilidad urbana · CABA · Normativa vigente 31/12/2024</div>
+    <button class="btn-pdf" onclick="descargarPDF()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 10v2h10v-2M7 2v7M4 6l3 3 3-3" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Descargar PDF
+    </button>
+  </div>
+</div>
+
+<!-- PDF HEADER (solo visible en print) -->
+<div class="pdf-header" style="display:none;padding:14px 0 10px;border-bottom:2px solid #0e0f13;margin-bottom:14px">
+  <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:#666;margin-bottom:4px">Urban.Fact · Pre-factibilidad Urbana · CABA</div>
+  <div style="font-size:9px;color:#888;font-family:'DM Mono',monospace">Normativa vigente al 31/12/2024 · CUR Ley 6776/2024 + CE Ley 6438/2021 · Generado: <span id="pdf-date"></span></div>
 </div>
 
 <!-- FORM PANEL -->
-<div class="form-panel">
-  <h2>Datos de la parcela a analizar</h2>
-  <div class="form-sub">Los campos marcados con <span style="color:var(--form-accent)">*</span> son necesarios para generar el informe. El resto mejora la precisión del análisis económico.</div>
-
+<div class="form-panel screen-only">
+  <div class="form-panel-header">
+    <h2>Datos de la parcela</h2>
+    <p>Campos con <span>*</span> son obligatorios. El resto mejora la precisión del análisis económico.</p>
+  </div>
   <div class="form-grid">
 
-    <div class="form-section-label">Identificación</div>
-
-    <div class="form-group wide">
+    <div class="fsec">Identificación</div>
+    <div class="fg w2">
       <label>Dirección <span class="req">*</span></label>
-      <input type="text" id="f-dir" placeholder="Ej: Salguero, Jerónimo 188" />
+      <input type="text" id="f-dir" placeholder="Ej: Salguero, Jerónimo 188"/>
     </div>
-    <div class="form-group">
-      <label>Sección <span class="req">*</span><span class="hint">Número de sección catastral</span></label>
-      <input type="text" id="f-sec" placeholder="Ej: 017" />
-    </div>
-    <div class="form-group">
-      <label>Manzana <span class="req">*</span></label>
-      <input type="text" id="f-manz" placeholder="Ej: 087B" />
-    </div>
-    <div class="form-group">
-      <label>Parcela <span class="req">*</span></label>
-      <input type="text" id="f-parc" placeholder="Ej: 035" />
+    <div class="fg"><label>Sección <span class="req">*</span><span class="hint">Número de sección catastral</span></label><input type="text" id="f-sec" placeholder="017"/></div>
+    <div class="fg"><label>Manzana <span class="req">*</span></label><input type="text" id="f-manz" placeholder="087B"/></div>
+    <div class="fg"><label>Parcela <span class="req">*</span></label><input type="text" id="f-parc" placeholder="035"/></div>
+
+    <div class="fsec">Geometría del lote · Plancheta Catastral DGCBA</div>
+    <div class="fg"><label>Frente / L.O. (m) <span class="req">*</span></label><input type="number" id="f-frente" placeholder="7.89" step="0.01"/></div>
+    <div class="fg"><label>Fondo derecho (m)</label><input type="number" id="f-fondo-d" placeholder="25.68" step="0.01"/></div>
+    <div class="fg"><label>Fondo izquierdo (m)</label><input type="number" id="f-fondo-i" placeholder="26.02" step="0.01"/></div>
+    <div class="fg"><label>Contrafrente (m)</label><input type="number" id="f-contra" placeholder="8.90" step="0.01"/></div>
+    <div class="fg"><label>Superficie total (m²) <span class="req">*</span></label><input type="number" id="f-sup" placeholder="201" step="1"/></div>
+    <div class="fg"><label>Forma de parcela</label>
+      <select id="f-forma"><option value="">Seleccionar…</option><option>Regular</option><option>Trapezoidal irregular</option><option>Irregular</option><option>Triangular</option></select>
     </div>
 
-    <hr class="form-divider">
-    <div class="form-section-label">Geometría del lote · fuente: Plancheta Catastral</div>
-
-    <div class="form-group">
-      <label>Frente / L.O. (m) <span class="req">*</span></label>
-      <input type="number" id="f-frente" placeholder="Ej: 7.89" step="0.01" />
-    </div>
-    <div class="form-group">
-      <label>Fondo derecho (m)</label>
-      <input type="number" id="f-fondo-d" placeholder="Ej: 25.68" step="0.01" />
-    </div>
-    <div class="form-group">
-      <label>Fondo izquierdo (m)</label>
-      <input type="number" id="f-fondo-i" placeholder="Ej: 26.02" step="0.01" />
-    </div>
-    <div class="form-group">
-      <label>Contrafrente (m)</label>
-      <input type="number" id="f-contra" placeholder="Ej: 8.90" step="0.01" />
-    </div>
-    <div class="form-group">
-      <label>Superficie total (m²) <span class="req">*</span></label>
-      <input type="number" id="f-sup" placeholder="Ej: 201" step="1" />
-    </div>
-    <div class="form-group">
-      <label>Forma de parcela</label>
-      <select id="f-forma">
-        <option value="">Seleccionar…</option>
-        <option>Regular</option>
-        <option>Trapezoidal irregular</option>
-        <option>Irregular</option>
-        <option>Triangular</option>
-      </select>
-    </div>
-
-    <hr class="form-divider">
-    <div class="form-section-label">Normativa urbanística · fuente: Ciudad 3D</div>
-
-    <div class="form-group">
+    <div class="fsec">Normativa urbanística · Ciudad 3D</div>
+    <div class="fg">
       <label>Unidad de Edificabilidad <span class="req">*</span><span class="hint">Verificar en Ciudad 3D</span></label>
-      <select id="f-ue">
-        <option value="">Seleccionar…</option>
-        <option value="USAA">U.S.A.A. — Altura Alta</option>
-        <option value="USAM">U.S.A.M. — Altura Media</option>
-        <option value="USAB">U.S.A.B. — Altura Baja</option>
-        <option value="R2b">R2b — Residencial</option>
-        <option value="otro">Otra — especificar</option>
-      </select>
+      <select id="f-ue"><option value="">Seleccionar…</option><option value="U.S.A.A.">U.S.A.A. — Altura Alta</option><option value="U.S.A.M.">U.S.A.M. — Altura Media</option><option value="U.S.A.B.">U.S.A.B. — Altura Baja</option><option value="R2b">R2b — Residencial</option><option value="Otra">Otra</option></select>
     </div>
-    <div class="form-group">
+    <div class="fg">
       <label>Tipología edilicia</label>
-      <select id="f-tipo">
-        <option value="">Seleccionar…</option>
-        <option>Entre Medianeras (EM)</option>
-        <option>Perímetro libre (PL)</option>
-        <option>Semiperímetro libre (SPL)</option>
-        <option>Aislado</option>
-      </select>
+      <select id="f-tipo"><option value="">Seleccionar…</option><option>Entre Medianeras (EM)</option><option>Perímetro libre (PL)</option><option>Semiperímetro libre (SPL)</option><option>Aislado</option></select>
     </div>
-    <div class="form-group">
-      <label>Altura máx. sobre L.O. (m) <span class="req">*</span><span class="hint">Ciudad 3D / CUR art. 6.2.3</span></label>
-      <input type="number" id="f-altura" placeholder="Ej: 22.80" step="0.01" />
-    </div>
-    <div class="form-group">
-      <label>Configuración</label>
-      <input type="text" id="f-config" placeholder="Ej: PB + 7 pisos + 2 retiros" />
-    </div>
-    <div class="form-group">
-      <label>Sup. volumetría admitida (m² brutos) <span class="req">*</span><span class="hint">Confirmar en Ciudad 3D</span></label>
-      <input type="number" id="f-vol" placeholder="Ej: 1525" step="1" />
-    </div>
-    <div class="form-group">
+    <div class="fg"><label>Altura máx. sobre L.O. (m) <span class="req">*</span><span class="hint">CUR art. 6.2.3 / Ciudad 3D</span></label><input type="number" id="f-altura" placeholder="22.80" step="0.01"/></div>
+    <div class="fg"><label>Configuración</label><input type="text" id="f-config" placeholder="PB + 7 pisos + 2 retiros"/></div>
+    <div class="fg"><label>Sup. volumetría admitida (m²) <span class="req">*</span><span class="hint">Confirmar en Ciudad 3D</span></label><input type="number" id="f-vol" placeholder="1525" step="1"/></div>
+    <div class="fg">
       <label>Protección Patrimonial (APH)</label>
-      <select id="f-aph">
-        <option value="">Seleccionar…</option>
-        <option value="no">Sin protección — Demolición admitida</option>
-        <option value="cat1">Catalogado Cat. 1</option>
-        <option value="cat2">Catalogado Cat. 2</option>
-        <option value="cat3">Catalogado Cat. 3</option>
-      </select>
+      <select id="f-aph"><option value="no">Sin protección — Demolición admitida</option><option value="cat1">Catalogado Cat. 1</option><option value="cat2">Catalogado Cat. 2</option><option value="cat3">Catalogado Cat. 3</option></select>
     </div>
 
-    <hr class="form-divider">
-    <div class="form-section-label">Plusvalía Urbana · Ley 6062 · fuente: Anexo BOCBA 5522</div>
-
-    <div class="form-group">
-      <label>Incidencia manzana (UVA/m²) <span class="req">*</span><span class="hint">Buscar manzana en Anexo Ley 6062</span></label>
-      <input type="number" id="f-uva-inc" placeholder="Ej: 921" step="1" />
-    </div>
-    <div class="form-group">
-      <label>Alícuota zona (%)<span class="hint">Art. 5 Ley 6062: básica 10%, intermedia 15%, alta 20%</span></label>
-      <select id="f-alicuota">
-        <option value="0.10">10% — zona básica</option>
-        <option value="0.15" selected>15% — zona intermedia</option>
-        <option value="0.20">20% — zona alta</option>
-      </select>
+    <div class="fsec">Plusvalía Urbana · Ley 6062 · Anexo BOCBA 5522</div>
+    <div class="fg"><label>Incidencia manzana (UVA/m²) <span class="req">*</span><span class="hint">Buscar manzana en Anexo Ley 6062</span></label><input type="number" id="f-uva-inc" placeholder="921" step="1"/></div>
+    <div class="fg">
+      <label>Alícuota zona<span class="hint">Art. 5 Ley 6062</span></label>
+      <select id="f-alic"><option value="0.10">10% — zona básica</option><option value="0.15" selected>15% — zona intermedia</option><option value="0.20">20% — zona alta</option></select>
     </div>
 
-    <hr class="form-divider">
-    <div class="form-section-label">Variables económicas · fuente: mercado / referencia</div>
+    <div class="fsec">Variables económicas · Mercado / referencia</div>
+    <div class="fg"><label>Precio venta estimado (USD/m²)<span class="hint">Zonaprop / portal inmobiliario</span></label><input type="number" id="f-pventa" placeholder="3300" step="50"/></div>
+    <div class="fg"><label>Costo construcción (USD/m²)<span class="hint">Índice CAC/CEDU — Cat. A</span></label><input type="number" id="f-cconst" placeholder="1350" step="50"/></div>
+    <div class="fg"><label>Valor terreno estimado (USD/m²)</label><input type="number" id="f-vterreno" placeholder="2800" step="50"/></div>
+    <div class="fg"><label>Tipo de cambio ref. (ARS/USD)</label><input type="number" id="f-tc" placeholder="1007" step="10"/></div>
 
-    <div class="form-group">
-      <label>Precio venta estimado (USD/m²)<span class="hint">Zonaprop / portal inmobiliario</span></label>
-      <input type="number" id="f-pventa" placeholder="Ej: 3300" step="50" />
+    <div class="fsec">Aspectos técnicos · referencia profesional</div>
+    <div class="fg">
+      <label>Tipo suelo / cimentación probable<span class="hint">Definir luego de estudio de suelos</span></label>
+      <select id="f-suelo"><option value="">Por determinar — estudio pendiente</option><option value="pilotes">Pilotes de concreto in situ ∅ 30-40 cm</option><option value="losa">Losa compensada</option><option value="zapatas">Zapatas corridas sobre relleno</option></select>
     </div>
-    <div class="form-group">
-      <label>Costo construcción (USD/m²)<span class="hint">Índice CAC/CEDU — Cat. A estándar</span></label>
-      <input type="number" id="f-cconst" placeholder="Ej: 1350" step="50" />
-    </div>
-    <div class="form-group">
-      <label>Valor terreno estimado (USD/m²)</label>
-      <input type="number" id="f-vterreno" placeholder="Ej: 2800" step="50" />
-    </div>
-    <div class="form-group">
-      <label>Tipo de cambio referencia (ARS/USD)</label>
-      <input type="number" id="f-tc" placeholder="Ej: 1007" step="10" />
+    <div class="fg"><label>Nivel freático estimado (m)<span class="hint">Palermo: variable — verificar GCBA</span></label><input type="number" id="f-freatico" placeholder="Ej: 3.5" step="0.5"/></div>
+    <div class="fg"><label>Profundidad excavación subsuelo (m)</label><input type="number" id="f-excav" placeholder="Ej: 3.5" step="0.5"/></div>
+    <div class="fg"><label>Zona Edenor<span class="hint">Palermo = zona norte</span></label><input type="text" id="f-edenor" placeholder="Zona norte Palermo"/></div>
+
+    <div class="fg wall">
+      <label>Observaciones del analista<span class="hint">Notas libres que aparecen al final del informe</span></label>
+      <textarea id="f-obs" placeholder="Ej: Edificio existente de 2 pisos con sótano. Se recomienda iniciar estudio de suelos antes del anteproyecto…"></textarea>
     </div>
 
-  </div><!-- /form-grid -->
-
-  <button class="btn-generate" onclick="generarInforme()">
+  </div>
+  <button class="btn-gen" onclick="generar()">
     Generar informe
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M9 4l3.5 3.5L9 11" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
-  <div class="form-note">
-    ⓘ El valor UVA se consulta en tiempo real desde la API del BCRA. Ante fallas de conectividad se usa el último valor disponible con aviso.
-    Los costos de construcción son estimativos basados en índices CAC/CEDU Q1-2025.<br>
-    Fuentes obligatorias a verificar: <a href="https://ciudad3d.buenosaires.gob.ar/" target="_blank">Ciudad 3D</a> · <a href="https://mapa.buenosaires.gob.ar/" target="_blank">Mapa BA (riesgo hídrico)</a> · <a href="https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp" target="_blank">BCRA (UVA)</a>
+  <div class="form-footer-note">
+    ⓘ UVA consultado en tiempo real desde BCRA. Costos estimativos sobre índices CAC/CEDU Q1-2025.<br>
+    Fuentes primarias: <a href="https://ciudad3d.buenosaires.gob.ar/" target="_blank">Ciudad 3D</a> · <a href="https://mapa.buenosaires.gob.ar/" target="_blank">Mapa BA (riesgo hídrico)</a> · <a href="https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp" target="_blank">BCRA (UVA)</a> · <a href="https://www.buenosaires.gob.ar/desarrollourbano/plusvalia-urbana" target="_blank">Calculadora Plusvalía GCBA</a>
   </div>
 </div>
 
-<!-- UVA LIVE STRIP -->
-<div class="uva-strip">
-  <div class="uva-block">
-    <div class="uva-key">UVA del día (BCRA)</div>
-    <div class="uva-val blue" id="uva-ars-v">
-      <span class="spinner"></span>
-    </div>
-  </div>
-  <div class="uva-block">
-    <div class="uva-key">Equivalencia USD</div>
-    <div class="uva-val green" id="uva-usd-v">—</div>
-  </div>
-  <div class="uva-block">
-    <div class="uva-key">Fecha del dato</div>
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft)" id="uva-fecha-v">—</div>
-  </div>
-  <div id="uva-badge" class="uva-badge loading"><span class="dot"></span> Cargando…</div>
-  <a class="uva-link" href="https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp" target="_blank">↗ Ver actualización en BCRA oficial</a>
+<!-- UVA STRIP -->
+<div class="uva-strip screen-only">
+  <div class="ub"><div class="uk">UVA del día (BCRA)</div><div class="uv blue" id="uva-ars-v"><span class="spin"></span></div></div>
+  <div class="ub"><div class="uk">Equivalencia USD</div><div class="uv green" id="uva-usd-v">—</div></div>
+  <div class="ub"><div class="uk">Fecha del dato</div><div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-soft)" id="uva-fecha-v">—</div></div>
+  <div id="uva-badge" class="ubadge load"><span class="dot"></span> Cargando…</div>
+  <a class="ulink" href="https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp" target="_blank">↗ Ver actualización en BCRA oficial</a>
 </div>
 
-<!-- REPORT BODY -->
-<div class="report-body">
+<!-- UVA PRINT STRIP -->
+<div class="uva-print" style="display:none;padding:8px 0 12px;border-bottom:1px solid #ccc;margin-bottom:12px;gap:28px;font-family:'DM Mono',monospace;font-size:11px">
+  <span><strong>UVA del día:</strong> <span id="uva-print-v">—</span></span>
+  <span><strong>Fecha:</strong> <span id="uva-print-f">—</span></span>
+  <span><strong>Equiv. USD:</strong> <span id="uva-print-usd">—</span></span>
+  <span style="color:#888">Fuente: BCRA — api.estadisticasbcra.com</span>
+</div>
 
-  <!-- REPORT HEADER -->
-  <div class="report-header-card">
-    <div class="rhc-label">Estudio de Factibilidad Urbana · CABA</div>
-    <div class="rhc-title" id="rh-title">
-      <span class="e e-xl"></span>
-    </div>
-    <div class="rhc-pills">
-      <span class="rhc-pill" id="rh-smp"><span class="e e-md"></span></span>
-      <span class="rhc-pill" id="rh-ue"><span class="e e-sm"></span></span>
-      <span class="rhc-pill" id="rh-frente"><span class="e e-sm"></span></span>
-      <span class="rhc-pill" id="rh-sup"><span class="e e-sm"></span></span>
-      <span class="rhc-pill">CUR Ley 6776/2024 + CE Ley 6438/2021</span>
+<!-- REPORT -->
+<div class="report">
+
+  <!-- HEADER CARD -->
+  <div class="rh">
+    <div class="rh-accent-bar"></div>
+    <div class="rh-inner">
+      <div class="rh-pretitle">Estudio de Factibilidad Urbana · CABA</div>
+      <div class="rh-title" id="rh-title"><span class="e exl"></span></div>
+      <div class="rh-pills">
+        <span class="rh-pill" id="rh-smp"><span class="e emd"></span></span>
+        <span class="rh-pill" id="rh-ue"><span class="e esm"></span></span>
+        <span class="rh-pill" id="rh-frente"><span class="e esm"></span></span>
+        <span class="rh-pill" id="rh-sup"><span class="e esm"></span></span>
+        <span class="rh-pill">CUR Ley 6776/2024 + CE Ley 6438/2021</span>
+      </div>
+      <div class="rh-date" id="rh-date"></div>
     </div>
   </div>
 
   <!-- ALERTA FRENTE -->
-  <div class="alert-bar warn hidden" id="alert-frente">
-    <svg class="alert-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L1.5 13.5H14.5L8 1.5Z" stroke="#c92020" stroke-width="1.5"/><path d="M8 6V9M8 11V11.5" stroke="#c92020" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <div class="abar warn hidden" id="alert-frente">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L1.5 13.5H14.5L8 1.5Z" stroke="#b91c1c" stroke-width="1.5"/><path d="M8 6V9M8 11V11.5" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round"/></svg>
     <span id="alert-frente-txt"></span>
   </div>
 
-  <!-- ALERTA INFO -->
-  <div class="alert-bar info" id="alert-info">
-    <svg class="alert-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#1847d4" stroke-width="1.5"/><path d="M8 7v5M8 5V5.5" stroke="#1847d4" stroke-width="1.5" stroke-linecap="round"/></svg>
-    <span>Completá el formulario y hacé clic en <strong>Generar informe</strong> para ver todos los parámetros calculados. Los campos vacíos a continuación muestran la estructura del documento.</span>
+  <!-- INFO PLACEHOLDER -->
+  <div class="abar info" id="alert-info">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#1a3caa" stroke-width="1.5"/><path d="M8 7v5M8 5V5.5" stroke="#1a3caa" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <span>Completá el formulario y hacé clic en <strong>Generar informe</strong>. Los campos vacíos a continuación muestran la estructura completa del documento.</span>
   </div>
 
-  <!-- SECCIÓN 1 -->
-  <div class="section-card open skeleton" id="sec1">
-    <div class="section-head" onclick="toggleSec(this)">
-      <div class="sh-left"><span class="sh-num">01</span> Análisis Urbanístico — Capacidad Edificable</div>
-      <div class="sh-right">9 parámetros
-        <svg class="chevron" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </div>
+  <!-- SEC 1: ANÁLISIS URBANÍSTICO -->
+  <div class="sc open skeleton" id="sec1">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">01</span> Análisis Urbanístico — Capacidad Edificable</div>
+      <div class="sc-right">9 parámetros <svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
     </div>
-    <div class="section-body">
-      <table class="ptable">
-        <tr><td class="td-lbl">Unidad de Edificabilidad</td><td class="td-val" id="p-ue"><span class="e e-lg"></span></td><td class="td-ref">CUR art. 6.2.3</td></tr>
-        <tr><td class="td-lbl">Altura máxima sobre L.O.</td><td class="td-val" id="p-altura"><span class="e e-sm"></span></td><td class="td-ref">CUR art. 6.2.3 / Ciudad 3D</td></tr>
-        <tr><td class="td-lbl">Configuración</td><td class="td-val" id="p-config"><span class="e e-md"></span></td><td class="td-ref">Ciudad 3D / croquis</td></tr>
-        <tr><td class="td-lbl">Tipología edilicia</td><td class="td-val" id="p-tipo"><span class="e e-md"></span></td><td class="td-ref">CUR art. 6.5.1</td></tr>
-        <tr><td class="td-lbl">Sep. mínima a ejes medianeros</td><td class="td-val" id="p-sep"><span class="e e-md"></span><br><span class="e e-line" style="width:180px;margin-top:4px"></span></td><td class="td-ref">CUR art. 6.5.2.1.3</td></tr>
-        <tr><td class="td-lbl">Retiro 1 (hasta alt. máx.)</td><td class="td-val">Mín. 2 m desde L.O. / 3 m alt.</td><td class="td-ref">CUR art. 6.3 a)</td></tr>
-        <tr><td class="td-lbl">Retiro 2 (adicional)</td><td class="td-val">Mín. 4 m desde L.O. / hasta Plano Límite</td><td class="td-ref">CUR art. 6.3 a)</td></tr>
-        <tr><td class="td-lbl">Plano Límite (perím. libre)</td><td class="td-val" id="p-planolimite"><span class="e e-sm"></span></td><td class="td-ref">CUR art. 6.5.2.1.2</td></tr>
-        <tr><td class="td-lbl">Subsuelo</td><td class="td-val">Admitido hasta L.I.B.</td><td class="td-ref">CUR art. 6.6</td></tr>
+    <div class="sc-body">
+      <table class="pt">
+        <tr><td class="tdl">Unidad de Edificabilidad</td><td class="tdv" id="p-ue"><span class="e elg"></span></td><td class="tdr">CUR art. 6.2.3</td></tr>
+        <tr><td class="tdl">Altura máxima sobre L.O.</td><td class="tdv" id="p-altura"><span class="e esm"></span></td><td class="tdr">CUR art. 6.2.3 / Ciudad 3D</td></tr>
+        <tr><td class="tdl">Configuración</td><td class="tdv" id="p-config"><span class="e emd"></span></td><td class="tdr">Ciudad 3D / croquis</td></tr>
+        <tr><td class="tdl">Tipología edilicia</td><td class="tdv" id="p-tipo"><span class="e emd"></span></td><td class="tdr">CUR art. 6.5.1</td></tr>
+        <tr><td class="tdl">Sep. mínima a ejes medianeros</td><td class="tdv" id="p-sep"><span class="e emd"></span></td><td class="tdr">CUR art. 6.5.2.1.3</td></tr>
+        <tr><td class="tdl">Retiro 1 (hasta alt. máx.)</td><td class="tdv">Mín. 2 m desde L.O. / 3 m alt.</td><td class="tdr">CUR art. 6.3 a)</td></tr>
+        <tr><td class="tdl">Retiro 2 (adicional)</td><td class="tdv">Mín. 4 m desde L.O. / hasta Plano Límite</td><td class="tdr">CUR art. 6.3 a)</td></tr>
+        <tr><td class="tdl">Plano Límite (perím. libre)</td><td class="tdv" id="p-pl"><span class="e esm"></span></td><td class="tdr">CUR art. 6.5.2.1.2</td></tr>
+        <tr><td class="tdl">Subsuelo</td><td class="tdv">Admitido hasta L.I.B.</td><td class="tdr">CUR art. 6.6</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- SECCIÓN 2 -->
-  <div class="section-card open skeleton" id="sec2">
-    <div class="section-head" onclick="toggleSec(this)">
-      <div class="sh-left"><span class="sh-num">02</span> Geometría del Lote</div>
-      <div class="sh-right">5 parámetros
-        <svg class="chevron" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </div>
+  <!-- SEC 2: GEOMETRÍA -->
+  <div class="sc open skeleton" id="sec2">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">02</span> Geometría del Lote</div>
+      <div class="sc-right">5 parámetros <svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
     </div>
-    <div class="section-body">
-      <table class="ptable">
-        <tr><td class="td-lbl">Frente / L.O.</td><td class="td-val" id="p-frente-v"><span class="e e-sm"></span></td><td class="td-ref">Plancheta Catastral DGCBA</td></tr>
-        <tr><td class="td-lbl">Fondo derecho / izquierdo</td><td class="td-val" id="p-fondos"><span class="e e-md"></span></td><td class="td-ref">Plancheta Catastral DGCBA</td></tr>
-        <tr><td class="td-lbl">Contrafrente</td><td class="td-val" id="p-contra-v"><span class="e e-sm"></span></td><td class="td-ref">Plancheta Catastral DGCBA</td></tr>
-        <tr><td class="td-lbl">Superficie total estimada</td><td class="td-val" id="p-sup-v"><span class="e e-sm"></span></td><td class="td-ref">Promedio ambas medianeras</td></tr>
-        <tr><td class="td-lbl">Forma</td><td class="td-val" id="p-forma-v"><span class="e e-md"></span></td><td class="td-ref">Plancheta Catastral DGCBA</td></tr>
+    <div class="sc-body">
+      <table class="pt">
+        <tr><td class="tdl">Frente / L.O.</td><td class="tdv" id="p-frente"><span class="e esm"></span></td><td class="tdr">Plancheta Catastral DGCBA</td></tr>
+        <tr><td class="tdl">Fondos (der. / izq.)</td><td class="tdv" id="p-fondos"><span class="e emd"></span></td><td class="tdr">Plancheta Catastral DGCBA</td></tr>
+        <tr><td class="tdl">Contrafrente</td><td class="tdv" id="p-contra"><span class="e esm"></span></td><td class="tdr">Plancheta Catastral DGCBA</td></tr>
+        <tr><td class="tdl">Superficie total estimada</td><td class="tdv" id="p-sup"><span class="e esm"></span></td><td class="tdr">Promedio ambas medianeras</td></tr>
+        <tr><td class="tdl">Forma</td><td class="tdv" id="p-forma"><span class="e emd"></span></td><td class="tdr">Plancheta Catastral DGCBA</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- SECCIÓN 3 -->
-  <div class="section-card open skeleton" id="sec3">
-    <div class="section-head" onclick="toggleSec(this)">
-      <div class="sh-left"><span class="sh-num">03</span> Uso del Suelo y Restricciones</div>
-      <div class="sh-right">6 parámetros
-        <svg class="chevron" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+  <!-- SEC 3: SUPERFICIE EDIFICABLE POR PLANTA -->
+  <div class="sc open skeleton" id="sec3">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">03</span> Superficie Edificable y Vendible — Distribución por Planta</div>
+      <div class="sc-right">Ciudad 3D / estimado EM <svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+    </div>
+    <div class="sc-body">
+      <div class="dist-grid" id="dist-grid">
+        <div class="dist-cell"><div class="dist-label">Planta Baja</div><div class="dist-val" id="d-pb"><span class="e esm"></span></div><div class="dist-note">Hasta L.F.I.</div></div>
+        <div class="dist-cell"><div class="dist-label">Pisos tipo</div><div class="dist-val" id="d-tipo"><span class="e esm"></span></div><div class="dist-note" id="d-tipo-note"><span class="e emd"></span></div></div>
+        <div class="dist-cell"><div class="dist-label">Retiro 1</div><div class="dist-val" id="d-r1"><span class="e esm"></span></div><div class="dist-note">Setback 2 m L.O.</div></div>
+        <div class="dist-cell"><div class="dist-label">Retiro 2</div><div class="dist-val" id="d-r2"><span class="e esm"></span></div><div class="dist-note">Setback adicional</div></div>
+        <div class="dist-cell"><div class="dist-label">Total bruto (sin subsuelo)</div><div class="dist-val" id="d-total"><span class="e esm"></span></div><div class="dist-note">= volumetría Ciudad 3D</div></div>
+        <div class="dist-cell"><div class="dist-label">Superficie vendible neta</div><div class="dist-val" id="d-vend"><span class="e esm"></span></div><div class="dist-note">Deducción 13% circ. — estándar EM</div></div>
       </div>
     </div>
-    <div class="section-body">
-      <table class="ptable">
-        <tr><td class="td-lbl">Vivienda multifamiliar</td><td class="td-val"><span class="tag tag-ok">✓ Sí — Principal, sin restricción</span></td><td class="td-ref">CUR Título 5</td></tr>
-        <tr><td class="td-lbl">Comercio en PB</td><td class="td-val"><span class="tag tag-ok">✓ Sí — Admitido en planta baja</span></td><td class="td-ref">CUR Título 5</td></tr>
-        <tr><td class="td-lbl">Protección Patrimonial</td><td class="td-val" id="p-aph"><span class="tag tag-empty"></span></td><td class="td-ref">CUR Título 9 / Ciudad 3D</td></tr>
-        <tr><td class="td-lbl">Riesgo Hídrico</td><td class="td-val"><span class="tag tag-warn">⚠ Verificar en Ciudad 3D + Mapa BA</span><div class="sub-note"><a href="https://ciudad3d.buenosaires.gob.ar/" target="_blank">↗ Ciudad 3D</a> · <a href="https://mapa.buenosaires.gob.ar/" target="_blank">↗ Mapa BA</a> · CE art. 3.1.2.3</div></td><td class="td-ref">CE art. 3.1.2.3</td></tr>
-        <tr><td class="td-lbl">Usos industriales / depósito</td><td class="td-val"><span class="tag tag-warn">✗ No compatible — zona residencial</span></td><td class="td-ref">CUR Título 5</td></tr>
-        <tr><td class="td-lbl">Cesión espacio público (L.O.E.)</td><td class="td-val">No aplica — parcela intermedia</td><td class="td-ref">CUR art. 4.1</td></tr>
+  </div>
+
+  <!-- SEC 4: USO DEL SUELO -->
+  <div class="sc open skeleton" id="sec4">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">04</span> Uso del Suelo, Mixtura y Restricciones</div>
+      <div class="sc-right">7 parámetros <svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+    </div>
+    <div class="sc-body">
+      <table class="pt">
+        <tr><td class="tdl">Vivienda multifamiliar</td><td class="tdv"><span class="tag tok">✓ Sí — Principal, sin restricción</span></td><td class="tdr">CUR Título 5</td></tr>
+        <tr><td class="tdl">Comercio en PB</td><td class="tdv"><span class="tag tok">✓ Sí — Admitido en planta baja</span></td><td class="tdr">CUR Título 5</td></tr>
+        <tr><td class="tdl">Oficinas / coworking</td><td class="tdv"><span class="tag tok">✓ Sí — Compatible USAA</span></td><td class="tdr">CUR Título 5</td></tr>
+        <tr><td class="tdl">Usos industriales / depósito</td><td class="tdv"><span class="tag twarn">✗ No compatible — zona residencial</span></td><td class="tdr">CUR Título 5</td></tr>
+        <tr><td class="tdl">Protección Patrimonial (APH)</td><td class="tdv" id="p-aph"><span class="tempty"></span></td><td class="tdr">CUR Título 9 / Ciudad 3D</td></tr>
+        <tr><td class="tdl">Riesgo Hídrico</td><td class="tdv"><span class="tag twarn">⚠ Verificar en Ciudad 3D + Mapa BA</span><div class="subnote"><a href="https://ciudad3d.buenosaires.gob.ar/" target="_blank">↗ Ciudad 3D</a> · <a href="https://mapa.buenosaires.gob.ar/" target="_blank">↗ Mapa BA</a></div></td><td class="tdr">CE art. 3.1.2.3</td></tr>
+        <tr><td class="tdl">Cesión espacio público (L.O.E.)</td><td class="tdv">No aplica — parcela intermedia</td><td class="tdr">CUR art. 4.1</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- SECCIÓN 4: PLUSVALÍA -->
-  <div class="section-card open skeleton" id="sec4">
-    <div class="section-head" onclick="toggleSec(this)">
-      <div class="sh-left"><span class="sh-num">04</span> Plusvalía Urbana — Ley 6062 (UVA actualizado)</div>
-      <div class="sh-right">6 parámetros
-        <svg class="chevron" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+  <!-- SEC 5: ASPECTOS TÉCNICOS Y DE OBRA -->
+  <div class="sc open skeleton" id="sec5">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">05</span> Aspectos Técnicos y de Obra</div>
+      <div class="sc-right">Suelos · Servicios · Sostenibilidad <svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+    </div>
+    <div class="sc-body">
+      <div class="tech-2col">
+        <div class="tech-cell">
+          <div class="tech-key">Suelos y Cimentación</div>
+          <div class="tech-val" id="t-suelo">Por determinar — estudio de suelos pendiente</div>
+          <div class="tech-note">Palermo: suelos blandos llanura aluvial del Río de La Plata. Estudio obligatorio para edificio &gt; 22 m (CE art. 3.9.1). Costo estimado: USD 10.000–14.000</div>
+        </div>
+        <div class="tech-cell">
+          <div class="tech-key">Submuración de Medianeras</div>
+          <div class="tech-val" id="t-submur">Obligatoria — costo estimado USD 50.000</div>
+          <div class="tech-note">Parcela con frente &lt; 10 m, medianeras ≥ 25 m. Costo referencia: USD 300–500/ml (ambos lados ~50 m × 2)</div>
+        </div>
+        <div class="tech-cell">
+          <div class="tech-key">Nivel Freático</div>
+          <div class="tech-val" id="t-freatico">Variable en Palermo</div>
+          <div class="tech-note">Diseño de subsuelo debe incluir impermeabilización y sistema de bombeo. Verificar carta freática GCBA.</div>
+        </div>
+        <div class="tech-cell">
+          <div class="tech-key">Profundidad de Excavación</div>
+          <div class="tech-val" id="t-excav">~3,5–4,0 m bajo cota de parcela</div>
+          <div class="tech-note">Para 1 nivel de subsuelo (cocheras). Verificar con carta freática GCBA.</div>
+        </div>
+      </div>
+
+      <!-- Servicios públicos -->
+      <div style="padding:14px 20px 6px;font-weight:500;font-size:12.5px;color:var(--ink-mid);border-top:1px solid var(--rule)">Servicios Públicos — Factibilidades Requeridas</div>
+      <table class="srv-table">
+        <tr>
+          <td class="s-empresa">AySA<small>www.aysa.com.ar</small></td>
+          <td>Consulta de factibilidad para edificio &gt; 8 unidades. Gestionar previo al permiso de obra.<br><span style="font-size:11px;color:var(--ink-soft)">Frente exiguo (7,89 m) — prever transformadores según capacidad</span></td>
+        </tr>
+        <tr>
+          <td class="s-empresa">Edenor<small>Zona norte Palermo</small></td>
+          <td id="t-edenor">Solicitar factibilidad de potencia. Transformadores en frente exiguo — prever previsión de potencia.<br><span style="font-size:11px;color:var(--ink-soft)">Cinturón Digital GCBA (CUR art. 6.9)</span></td>
+        </tr>
+        <tr>
+          <td class="s-empresa">Metrogas<small>metrogas.com.ar</small></td>
+          <td>Factibilidad de suministro + diseño de instalación centralizada. Exigida previo al proyecto ejecutivo.</td>
+        </tr>
+        <tr>
+          <td class="s-empresa">Telecom / Operadoras<small>Infraestructura</small></td>
+          <td>Previsión de ductos en proyecto. Cinturón Digital GCBA (CUR art. 6.9).</td>
+        </tr>
+      </table>
+
+      <!-- Sostenibilidad -->
+      <div style="padding:14px 20px 6px;font-weight:500;font-size:12.5px;color:var(--ink-mid);border-top:1px solid var(--rule)">Sostenibilidad — Exigencias CE Capítulo 3.7 (obligatorias)</div>
+      <div class="tech-2col" style="border-top:none">
+        <div class="tech-cell">
+          <div class="tech-key">Cubierta verde o techo reflectivo</div>
+          <div class="tech-val"><span class="tag tok">Obligatorio</span></div>
+          <div class="tech-note">CE art. 6.6 CUR, 6.3.1 CE. Puede otorgar sup. no computable si se ejecuta sobre último retiro.</div>
+        </div>
+        <div class="tech-cell">
+          <div class="tech-key">Aislación térmica de envolvente</div>
+          <div class="tech-val"><span class="tag tok">Obligatorio</span></div>
+          <div class="tech-note">IRAM 11605. Exigible para obra nueva residencial en CABA. Certificación requerida.</div>
+        </div>
+        <div class="tech-cell">
+          <div class="tech-key">Dispositivos ahorro de agua</div>
+          <div class="tech-val"><span class="tag tok">Obligatorio</span></div>
+          <div class="tech-note">Grifería eficiente clase A. CE Capítulo 3.7.</div>
+        </div>
+        <div class="tech-cell">
+          <div class="tech-key">Medición individual de energía</div>
+          <div class="tech-val"><span class="tag tok">Obligatorio</span></div>
+          <div class="tech-note">Un medidor por unidad funcional. CE Capítulo 3.7.</div>
+        </div>
       </div>
     </div>
-    <div class="section-body">
-      <table class="ptable">
-        <tr><td class="td-lbl">Incidencia manzana</td><td class="td-val" id="p-inc-uva"><span class="e e-md"></span></td><td class="td-ref">Ley 6062 — Anexo BOCBA 5522</td></tr>
-        <tr class="uva-row"><td class="td-lbl">UVA de referencia (BCRA live)</td><td class="td-val"><strong id="p-uva-live">Cargando…</strong> ARS/UVA<div class="sub-note"><a href="https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp" target="_blank">↗ Ver actualización en BCRA oficial</a></div></td><td class="td-ref">BCRA — Variable ID 31</td></tr>
-        <tr class="uva-row"><td class="td-lbl">B — Valor suelo (UVA × ARS)</td><td class="td-val" id="p-b-val"><span class="e e-lg"></span></td><td class="td-ref">Incidencia × UVA/ARS</td></tr>
-        <tr><td class="td-lbl">A1 — 80% sup. solicitada</td><td class="td-val" id="p-a1"><span class="e e-lg"></span></td><td class="td-ref">80% × vol. bruta</td></tr>
-        <tr><td class="td-lbl">A2 — m² código anterior (FOT 2)</td><td class="td-val" id="p-a2"><span class="e e-md"></span></td><td class="td-ref">FOT 2 × sup. lote</td></tr>
-        <tr class="uva-row"><td class="td-lbl">Plusvalía estimada</td><td class="td-val"><strong id="p-plusvalia">—</strong><div class="sub-note">Base imponible × B/m² × alícuota · UVA del día · <a href="https://www.buenosaires.gob.ar/desarrollourbano/plusvalia-urbana" target="_blank">↗ Calculadora oficial GCBA</a></div></td><td class="td-ref">Ley 6062 art. 5</td></tr>
+  </div>
+
+  <!-- SEC 6: PLUSVALÍA -->
+  <div class="sc open skeleton" id="sec6">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">06</span> Plusvalía Urbana — Ley 6062 (UVA del día)</div>
+      <div class="sc-right">Cálculo dinámico <svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+    </div>
+    <div class="sc-body">
+      <table class="pt">
+        <tr><td class="tdl">Incidencia manzana</td><td class="tdv" id="p-inc"><span class="e emd"></span></td><td class="tdr">Ley 6062 — Anexo BOCBA 5522</td></tr>
+        <tr class="uvrow"><td class="tdl">UVA de referencia (BCRA live)</td><td class="tdv"><strong id="p-uva">Cargando…</strong> ARS/UVA<div class="subnote"><a href="https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp" target="_blank">↗ Ver actualización en BCRA oficial</a></div></td><td class="tdr">BCRA · Variable ID 31</td></tr>
+        <tr class="uvrow"><td class="tdl">B — Valor suelo (UVA × ARS/m²)</td><td class="tdv" id="p-b"><span class="e elg"></span></td><td class="tdr">Incidencia × UVA/ARS</td></tr>
+        <tr><td class="tdl">A1 — 80% sup. solicitada</td><td class="tdv" id="p-a1"><span class="e elg"></span></td><td class="tdr">80% × vol. bruta</td></tr>
+        <tr><td class="tdl">A2 — m² código anterior (FOT 2)</td><td class="tdv" id="p-a2"><span class="e emd"></span></td><td class="tdr">FOT 2 × sup. lote</td></tr>
+        <tr><td class="tdl">Base imponible</td><td class="tdv" id="p-base"><span class="e esm"></span></td><td class="tdr">A1 − A2</td></tr>
+        <tr><td class="tdl">Alícuota</td><td class="tdv" id="p-alic-v"><span class="e esm"></span></td><td class="tdr">Ley 6062 art. 5</td></tr>
+        <tr class="uvrow"><td class="tdl">Plusvalía estimada</td><td class="tdv"><strong id="p-plus">—</strong><div class="subnote">Base imponible × B/m² × alícuota · <a href="https://www.buenosaires.gob.ar/desarrollourbano/plusvalia-urbana" target="_blank">↗ Calculadora oficial GCBA</a></div></td><td class="tdr">Ley 6062 art. 5</td></tr>
       </table>
     </div>
   </div>
 
-  <!-- SECCIÓN 5: COSTOS -->
-  <div class="section-card open skeleton" id="sec5">
-    <div class="section-head" onclick="toggleSec(this)">
-      <div class="sh-left"><span class="sh-num">05</span> Variables de Costos — Presupuesto Estimado</div>
-      <div class="sh-right">Índices CAC/CEDU Q1-2025
-        <svg class="chevron" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </div>
+  <!-- SEC 7: COSTOS -->
+  <div class="sc open skeleton" id="sec7">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">07</span> Variables de Costos — Presupuesto Estimado</div>
+      <div class="sc-right">CAC/CEDU Q1-2025 <svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
     </div>
-    <div class="section-body">
-      <table class="etable">
-        <thead><tr><td>Ítem</td><td>Cantidad</td><td>Unit. (USD)</td><td class="num">Total (USD)</td></tr></thead>
+    <div class="sc-body">
+      <table class="et">
+        <thead><tr><td>Ítem</td><td>Cantidad</td><td>Unit. (USD)</td><td class="nr">Total (USD)</td></tr></thead>
         <tbody>
-          <tr class="cat-row"><td colspan="4">1. Demolición</td></tr>
-          <tr><td>Demolición edificio existente</td><td id="c-dem-cant"><span class="e e-sm"></span></td><td>80</td><td class="num" id="c-dem-tot"><span class="e e-sm"></span></td></tr>
-          <tr><td>Retiro de escombros y transporte</td><td id="c-esc-cant"><span class="e e-sm"></span></td><td>30</td><td class="num" id="c-esc-tot"><span class="e e-sm"></span></td></tr>
-          <tr class="sub-row"><td colspan="3">Subtotal Demolición</td><td class="num" id="c-sub-dem"><span class="e e-sm"></span></td></tr>
-          <tr class="cat-row"><td colspan="4">2. Construcción (obra nueva)</td></tr>
-          <tr><td>Superestructura — Vivienda Cat. A</td><td id="c-const-cant"><span class="e e-sm"></span></td><td id="c-const-unit"><span class="e e-sm"></span></td><td class="num" id="c-const-tot"><span class="e e-lg"></span></td></tr>
-          <tr><td>Subsuelo (cocheras, ~1 nivel)</td><td id="c-sub-cant"><span class="e e-sm"></span></td><td>800</td><td class="num" id="c-sub-tot"><span class="e e-sm"></span></td></tr>
-          <tr><td>Áreas no vendibles / circulación (13%)</td><td id="c-circ-cant"><span class="e e-sm"></span></td><td>700</td><td class="num" id="c-circ-tot"><span class="e e-sm"></span></td></tr>
-          <tr class="sub-row"><td colspan="3">Subtotal Construcción</td><td class="num" id="c-sub-const"><span class="e e-sm"></span></td></tr>
-          <tr class="cat-row"><td colspan="4">3. Incidencia del Terreno</td></tr>
-          <tr><td>Valor terreno (mercado)</td><td id="c-terr-cant"><span class="e e-sm"></span></td><td id="c-terr-unit"><span class="e e-sm"></span></td><td class="num" id="c-terr-tot"><span class="e e-sm"></span></td></tr>
-          <tr class="sub-row"><td colspan="3">Subtotal Terreno</td><td class="num" id="c-sub-terr"><span class="e e-sm"></span></td></tr>
-          <tr class="cat-row"><td colspan="4">4. Honorarios Profesionales</td></tr>
-          <tr><td>Proyecto + dirección + cálculo estructural (8% constr.)</td><td>—</td><td>—</td><td class="num" id="c-hon1"><span class="e e-sm"></span></td></tr>
-          <tr><td>Estudio de suelos + ensayos</td><td>Global</td><td>—</td><td class="num">12.000</td></tr>
-          <tr><td>Honorarios gestión (2% obra)</td><td>—</td><td>—</td><td class="num" id="c-hon3"><span class="e e-sm"></span></td></tr>
-          <tr class="sub-row"><td colspan="3">Subtotal Honorarios</td><td class="num" id="c-sub-hon"><span class="e e-sm"></span></td></tr>
-          <tr class="cat-row"><td colspan="4">5. Derechos, Tasas y Sellados (GCBA)</td></tr>
-          <tr><td>Derechos de delineación y construcción (~1,5% m² cub.)</td><td id="c-der-cant"><span class="e e-sm"></span></td><td>~25/m²</td><td class="num" id="c-der-tot"><span class="e e-sm"></span></td></tr>
-          <tr><td>Sellados y aranceles Registro de la Propiedad</td><td>Global</td><td>—</td><td class="num">8.000</td></tr>
-          <tr class="sub-row"><td colspan="3">Subtotal Derechos</td><td class="num" id="c-sub-der"><span class="e e-sm"></span></td></tr>
-          <tr class="plus-row"><td><strong>6. Plusvalía Urbana (Ley 6062)</strong></td><td colspan="2" id="c-plus-nota"><span class="e e-lg"></span></td><td class="num num-neg" id="c-plus-tot"><span class="e e-sm"></span></td></tr>
-          <tr class="total-row"><td colspan="3">COSTO TOTAL ESTIMADO</td><td class="num" id="c-total"><span class="e e-md"></span></td></tr>
+          <tr class="catr"><td colspan="4">1. Demolición</td></tr>
+          <tr><td>Demolición edificio existente</td><td id="c-d1"><span class="e esm"></span></td><td>80</td><td class="nr" id="c-d1t"><span class="e esm"></span></td></tr>
+          <tr><td>Retiro de escombros y transporte</td><td id="c-d2"><span class="e esm"></span></td><td>30</td><td class="nr" id="c-d2t"><span class="e esm"></span></td></tr>
+          <tr class="subr"><td colspan="3">Subtotal Demolición</td><td class="nr" id="c-dsub"><span class="e esm"></span></td></tr>
+          <tr class="catr"><td colspan="4">2. Construcción (obra nueva)</td></tr>
+          <tr><td>Superestructura — Vivienda Cat. A</td><td id="c-c1"><span class="e esm"></span></td><td id="c-cu"><span class="e esm"></span></td><td class="nr" id="c-c1t"><span class="e elg"></span></td></tr>
+          <tr><td>Subsuelo (cocheras, ~1 nivel)</td><td id="c-c2"><span class="e esm"></span></td><td>800</td><td class="nr" id="c-c2t"><span class="e esm"></span></td></tr>
+          <tr><td>Áreas no vendibles / circulación (13%)</td><td id="c-c3"><span class="e esm"></span></td><td>700</td><td class="nr" id="c-c3t"><span class="e esm"></span></td></tr>
+          <tr class="subr"><td colspan="3">Subtotal Construcción</td><td class="nr" id="c-csub"><span class="e esm"></span></td></tr>
+          <tr class="catr"><td colspan="4">3. Incidencia del Terreno</td></tr>
+          <tr><td>Valor terreno (mercado)</td><td id="c-t1"><span class="e esm"></span></td><td id="c-tu"><span class="e esm"></span></td><td class="nr" id="c-t1t"><span class="e esm"></span></td></tr>
+          <tr class="subr"><td colspan="3">Subtotal Terreno</td><td class="nr" id="c-tsub"><span class="e esm"></span></td></tr>
+          <tr class="catr"><td colspan="4">4. Honorarios Profesionales</td></tr>
+          <tr><td>Proyecto + dirección + cálculo estructural (8% constr.)</td><td>—</td><td>—</td><td class="nr" id="c-h1"><span class="e esm"></span></td></tr>
+          <tr><td>Estudio de suelos + ensayos</td><td>Global</td><td>—</td><td class="nr">12.000</td></tr>
+          <tr><td>Honorarios gestión (2% obra)</td><td>—</td><td>—</td><td class="nr" id="c-h3"><span class="e esm"></span></td></tr>
+          <tr class="subr"><td colspan="3">Subtotal Honorarios</td><td class="nr" id="c-hsub"><span class="e esm"></span></td></tr>
+          <tr class="catr"><td colspan="4">5. Derechos, Tasas y Sellados (GCBA)</td></tr>
+          <tr><td>Derechos de delineación y construcción (~1,5% m² cub.)</td><td id="c-dr1"><span class="e esm"></span></td><td>~25/m²</td><td class="nr" id="c-dr1t"><span class="e esm"></span></td></tr>
+          <tr><td>Sellados y aranceles Registro de la Propiedad</td><td>Global</td><td>—</td><td class="nr">8.000</td></tr>
+          <tr class="subr"><td colspan="3">Subtotal Derechos</td><td class="nr" id="c-drsub"><span class="e esm"></span></td></tr>
+          <tr class="plusr"><td><strong>6. Plusvalía Urbana (Ley 6062)</strong></td><td colspan="2" id="c-pnota"><span class="e elg"></span></td><td class="nr nneg" id="c-ptot"><span class="e esm"></span></td></tr>
+          <tr class="totr"><td colspan="3">COSTO TOTAL ESTIMADO</td><td class="nr" id="c-total"><span class="e emd"></span></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- SECCIÓN 6: INDICADORES -->
-  <div class="section-card open skeleton" id="sec6">
-    <div class="section-head" onclick="toggleSec(this)">
-      <div class="sh-left"><span class="sh-num">06</span> Indicadores Económicos — Pre-Factibilidad</div>
-      <div class="sh-right">KPIs
-        <svg class="chevron" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </div>
+  <!-- SEC 8: INDICADORES -->
+  <div class="sc open skeleton" id="sec8">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">08</span> Indicadores Económicos — Pre-Factibilidad</div>
+      <div class="sc-right">KPIs <svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
     </div>
-    <div class="section-body">
-      <table class="etable">
-        <thead><tr><td>Concepto</td><td>Cantidad</td><td>Valor unit.</td><td class="num">Total (USD)</td></tr></thead>
+    <div class="sc-body">
+      <table class="et" style="margin-bottom:1px">
+        <thead><tr><td>Concepto</td><td>Cantidad</td><td>Valor unit.</td><td class="nr">Total (USD)</td></tr></thead>
         <tbody>
-          <tr><td>Unidades vendibles netas</td><td id="e-vend-cant"><span class="e e-sm"></span></td><td id="e-pventa"><span class="e e-sm"></span></td><td class="num" id="e-ing-viv"><span class="e e-sm"></span></td></tr>
-          <tr><td>Cochera (est. 8 unidades)</td><td>8 u.</td><td>USD 18.000 c/u</td><td class="num">144.000</td></tr>
-          <tr class="sub-row"><td colspan="3">Ingresos Totales Estimados</td><td class="num num-pos" id="e-ing-total"><span class="e e-sm"></span></td></tr>
-          <tr><td colspan="3">Inversión Total</td><td class="num num-neg" id="e-inversion"><span class="e e-sm"></span></td></tr>
-          <tr class="total-row"><td colspan="3">Resultado Bruto</td><td class="num" id="e-resultado"><span class="e e-md"></span></td></tr>
+          <tr><td>Unidades vendibles netas</td><td id="e-vc"><span class="e esm"></span></td><td id="e-pv"><span class="e esm"></span></td><td class="nr" id="e-iv"><span class="e esm"></span></td></tr>
+          <tr><td>Cochera (est. 8 unidades)</td><td>8 u.</td><td>USD 18.000 c/u</td><td class="nr">144.000</td></tr>
+          <tr class="subr"><td colspan="3">Ingresos Totales Estimados</td><td class="nr npos" id="e-it"><span class="e esm"></span></td></tr>
+          <tr><td colspan="3">Inversión Total</td><td class="nr nneg" id="e-inv"><span class="e esm"></span></td></tr>
+          <tr class="totr"><td colspan="3">Resultado Bruto</td><td class="nr" id="e-res"><span class="e emd"></span></td></tr>
         </tbody>
       </table>
-      <div class="kpi-grid">
-        <div class="kpi-cell"><div class="kpi-key">Sup. del terreno</div><div class="kpi-v" id="k-sup"><span class="e e-sm"></span></div><div class="kpi-sub">Plancheta catastral</div></div>
-        <div class="kpi-cell"><div class="kpi-key">Sup. bruta edificable</div><div class="kpi-v" id="k-vol"><span class="e e-sm"></span></div><div class="kpi-sub">Ciudad 3D / USAA</div></div>
-        <div class="kpi-cell"><div class="kpi-key">Sup. vendible neta</div><div class="kpi-v" id="k-vend"><span class="e e-sm"></span></div><div class="kpi-sub">Deducción 13% circ.</div></div>
-        <div class="kpi-cell"><div class="kpi-key">Costo por m² vendible</div><div class="kpi-v blue" id="k-costo-m2"><span class="e e-sm"></span></div><div class="kpi-sub">Inversión / sup. vendible</div></div>
-        <div class="kpi-cell"><div class="kpi-key">Precio venta estimado</div><div class="kpi-v" id="k-pventa"><span class="e e-sm"></span></div><div class="kpi-sub">Referencia de mercado</div></div>
-        <div class="kpi-cell"><div class="kpi-key">Plusvalía (Ley 6062)</div><div class="kpi-v red" id="k-plus"><span class="e e-sm"></span></div><div class="kpi-sub">Con UVA del día · <a href="https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp" target="_blank">↗ BCRA</a></div></div>
-        <div class="kpi-cell"><div class="kpi-key">Margen bruto</div><div class="kpi-v green" id="k-margen"><span class="e e-sm"></span></div><div class="kpi-sub">Sobre ingresos totales</div></div>
-        <div class="kpi-cell"><div class="kpi-key">Relación vendible/bruto</div><div class="kpi-v" id="k-rel">87%</div><div class="kpi-sub">Estándar EM CABA</div></div>
+      <div class="kg">
+        <div class="kc"><div class="kk">Sup. del terreno</div><div class="kv" id="k-sup"><span class="e esm"></span></div><div class="ks">Plancheta catastral</div></div>
+        <div class="kc"><div class="kk">Sup. bruta edificable</div><div class="kv" id="k-vol"><span class="e esm"></span></div><div class="ks">Ciudad 3D / USAA</div></div>
+        <div class="kc"><div class="kk">Sup. vendible neta</div><div class="kv" id="k-vend"><span class="e esm"></span></div><div class="ks">–13% circ.</div></div>
+        <div class="kc"><div class="kk">Costo por m² vendible</div><div class="kv blue" id="k-cm2"><span class="e esm"></span></div><div class="ks">Inversión / sup. vendible</div></div>
+        <div class="kc"><div class="kk">Precio venta estimado</div><div class="kv" id="k-pv"><span class="e esm"></span></div><div class="ks">Referencia de mercado</div></div>
+        <div class="kc"><div class="kk">Plusvalía (Ley 6062)</div><div class="kv red" id="k-plus"><span class="e esm"></span></div><div class="ks">Con UVA del día</div></div>
+        <div class="kc"><div class="kk">Margen bruto</div><div class="kv green" id="k-margen"><span class="e esm"></span></div><div class="ks">Sobre ingresos totales</div></div>
+        <div class="kc"><div class="kk">Relación vendible/bruto</div><div class="kv">87%</div><div class="ks">Estándar EM CABA</div></div>
       </div>
     </div>
   </div>
 
-  <!-- SECCIÓN 7: ALERTAS -->
-  <div class="section-card open">
-    <div class="section-head" onclick="toggleSec(this)">
-      <div class="sh-left"><span class="sh-num">07</span> Alertas y Próximos Pasos</div>
-      <div class="sh-right">8 ítems
-        <svg class="chevron" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </div>
+  <!-- SEC 9: ALERTAS -->
+  <div class="sc open" id="sec9">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">09</span> Alertas y Próximos Pasos</div>
+      <div class="sc-right">8 ítems <svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
     </div>
-    <div class="section-body">
-      <div class="alert-list">
-        <div class="al-item red"><span class="al-num">1</span><span>Solicitar <strong>Informe de Dominio</strong> (Registro de la Propiedad Inmueble CABA) para verificar gravámenes.</span></div>
-        <div class="al-item red"><span class="al-num">2</span><span>Confirmar <strong>clasificación de Riesgo Hídrico</strong> en Ciudad 3D y cota mínima (CE art. 3.1.2.3). <a href="https://ciudad3d.buenosaires.gob.ar/" target="_blank">↗ Ciudad 3D</a></span></div>
-        <div class="al-item amber"><span class="al-num">3</span><span>Iniciar consultas de <strong>factibilidad de servicios</strong>: AySA, Edenor, Metrogas previo al diseño.</span></div>
-        <div class="al-item red"><span class="al-num">4</span><span>Encargar <strong>Estudio de Suelos</strong> para definir tipo de cimentación y costo de submuración (est. USD 10.000–14.000).</span></div>
-        <div class="al-item amber"><span class="al-num">5</span><span>Verificar exigencia de <strong>Fachada Activa</strong> en esta calle (CUR art. 3.20).</span></div>
-        <div class="al-item green"><span class="al-num">6</span><span>Calcular <strong>Plusvalía exacta</strong> con proyecto definitivo en Ciudad 3D. <a href="https://www.buenosaires.gob.ar/desarrollourbano/plusvalia-urbana" target="_blank">↗ Calculadora oficial GCBA</a></span></div>
-        <div class="al-item amber"><span class="al-num">7</span><span>Gestionar <strong>Consulta de Tejido</strong> ante DGIUR si se proyecta combinación tipológica.</span></div>
-        <div class="al-item green"><span class="al-num">8</span><span>El valor de UVA de este informe se actualiza automáticamente desde BCRA. Recalcular al momento del permiso de obra.</span></div>
+    <div class="sc-body">
+      <div class="alist">
+        <div class="ai red"><span class="ai-n">1</span><span>Solicitar <strong>Informe de Dominio</strong> (Registro de la Propiedad Inmueble CABA) para verificar gravámenes.</span></div>
+        <div class="ai red"><span class="ai-n">2</span><span>Confirmar <strong>clasificación de Riesgo Hídrico</strong> en Ciudad 3D y cota mínima (CE art. 3.1.2.3). <a href="https://ciudad3d.buenosaires.gob.ar/" target="_blank">↗ Ciudad 3D</a></span></div>
+        <div class="ai red"><span class="ai-n">3</span><span>Encargar <strong>Estudio de Suelos</strong> — mínimo 3 perforaciones SPT. Costo estimado USD 10.000–14.000.</span></div>
+        <div class="ai amber"><span class="ai-n">4</span><span>Iniciar consultas de <strong>factibilidad de servicios</strong>: AySA, Edenor, Metrogas previo al diseño.</span></div>
+        <div class="ai amber"><span class="ai-n">5</span><span>Verificar exigencia de <strong>Fachada Activa</strong> en esta calle (CUR art. 3.20).</span></div>
+        <div class="ai green"><span class="ai-n">6</span><span>Calcular <strong>Plusvalía exacta</strong> con proyecto definitivo. <a href="https://www.buenosaires.gob.ar/desarrollourbano/plusvalia-urbana" target="_blank">↗ Calculadora oficial GCBA</a></span></div>
+        <div class="ai amber"><span class="ai-n">7</span><span>Gestionar <strong>Consulta de Tejido</strong> ante DGIUR si se proyecta combinación tipológica.</span></div>
+        <div class="ai green"><span class="ai-n">8</span><span>El valor UVA de este informe se actualiza automáticamente desde BCRA. Recalcular al momento del permiso de obra.</span></div>
       </div>
     </div>
   </div>
 
-</div><!-- /report-body -->
+  <!-- SEC 10: OBSERVACIONES -->
+  <div class="sc open" id="sec10">
+    <div class="sc-head" onclick="tog(this)">
+      <div class="sc-left"><span class="sc-num">10</span> Observaciones del Analista</div>
+      <div class="sc-right"><svg class="chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+    </div>
+    <div class="sc-body">
+      <div class="obs-area">
+        <textarea id="obs-display" placeholder="Las observaciones ingresadas en el formulario aparecerán aquí…" readonly style="background:#f7f6f3;color:var(--ink);cursor:default"></textarea>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /report -->
 
 <div class="doc-footer">
-  <strong>Descargo de responsabilidad:</strong> Estudio de pre-factibilidad de carácter técnico-informativo. Los valores son estimaciones orientativas. La información normativa fue extraída de los textos consolidados del CUR (Ley 6776/2024), CE (Ley 6438/2021) y Ley 6062/2018. El valor UVA se consulta en tiempo real desde la API del BCRA. Verificar todos los datos en las fuentes primarias antes de tomar decisiones. · Fuentes: <a href="https://ciudad3d.buenosaires.gob.ar/" target="_blank">ciudad3d.buenosaires.gob.ar</a> · <a href="https://normativa.buenosaires.gob.ar/" target="_blank">normativa.buenosaires.gob.ar</a> · Catastro DGROC · <a href="https://www.bcra.gob.ar" target="_blank">bcra.gob.ar</a>
+  <strong>Descargo de responsabilidad:</strong> Estudio de pre-factibilidad de carácter técnico-informativo. Valores de superficie, costo e ingresos son estimaciones orientativas. Información normativa extraída de CUR (Ley 6776/2024), CE (Ley 6438/2021) y Ley 6062/2018. Valor UVA consultado en tiempo real desde API pública BCRA. Verificar todos los datos en fuentes primarias antes de decisiones de inversión. · Fuentes: <a href="https://ciudad3d.buenosaires.gob.ar/" target="_blank">ciudad3d.buenosaires.gob.ar</a> · <a href="https://normativa.buenosaires.gob.ar/" target="_blank">normativa.buenosaires.gob.ar</a> · Catastro DGROC · <a href="https://www.bcra.gob.ar" target="_blank">bcra.gob.ar</a>
 </div>
 
 <script>
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 // ESTADO GLOBAL
-// ════════════════════════════════════════
-let UVA_ARS = null;
-let UVA_FECHA = '—';
-let UVA_OK = false;
-const TC_DEFAULT = 1007;
+// ══════════════════════════════════════
+let UVA_ARS = null, UVA_FECHA = '—', UVA_OK = false;
+const TC_DEF = 1007;
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 // FETCH UVA
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 async function fetchUVA() {
   const today = new Date();
-  const desde = new Date(today); desde.setDate(today.getDate() - 7);
+  const desde = new Date(today); desde.setDate(today.getDate()-7);
   const fmt = d => d.toISOString().split('T')[0];
-
   try {
-    const res = await fetch(
-      `https://api.estadisticasbcra.com/uva?desde=${fmt(desde)}&hasta=${fmt(today)}`
-    );
-    if (!res.ok) throw new Error('api');
-    const data = await res.json();
-    if (Array.isArray(data) && data.length > 0) {
-      const last = data[data.length - 1];
-      UVA_ARS = last.v; UVA_FECHA = last.d; UVA_OK = true;
-    } else throw new Error('empty');
+    const r = await fetch(`https://api.estadisticasbcra.com/uva?desde=${fmt(desde)}&hasta=${fmt(today)}`);
+    if(!r.ok) throw new Error();
+    const data = await r.json();
+    if(Array.isArray(data) && data.length){
+      const last = data[data.length-1];
+      UVA_ARS=last.v; UVA_FECHA=last.d; UVA_OK=true;
+    } else throw new Error();
   } catch {
-    // fallback conocido
-    UVA_ARS = 1623; UVA_FECHA = 'estimado'; UVA_OK = false;
+    UVA_ARS=1623; UVA_FECHA='estimado'; UVA_OK=false;
   }
-  renderUVAStrip();
+  renderUVA();
 }
 
-function renderUVAStrip() {
-  const tc = parseFloat(document.getElementById('f-tc').value) || TC_DEFAULT;
-  const usdVal = UVA_ARS / tc;
+function renderUVA() {
+  const tc = parseFloat(document.getElementById('f-tc').value)||TC_DEF;
+  const usd = UVA_ARS/tc;
+  const arsStr = '$ '+Math.round(UVA_ARS).toLocaleString('es-AR');
+  const usdStr = 'USD '+usd.toFixed(4);
 
-  document.getElementById('uva-ars-v').textContent = '$ ' + Math.round(UVA_ARS).toLocaleString('es-AR');
-  document.getElementById('uva-usd-v').textContent = 'USD ' + usdVal.toFixed(4);
+  document.getElementById('uva-ars-v').textContent = arsStr;
+  document.getElementById('uva-usd-v').textContent = usdStr;
   document.getElementById('uva-fecha-v').textContent = UVA_FECHA;
-  document.getElementById('p-uva-live').textContent = '$ ' + Math.round(UVA_ARS).toLocaleString('es-AR');
+  document.getElementById('p-uva').textContent = arsStr;
+  // print
+  document.getElementById('uva-print-v').textContent = arsStr;
+  document.getElementById('uva-print-f').textContent = UVA_FECHA;
+  document.getElementById('uva-print-usd').textContent = usdStr;
 
   const badge = document.getElementById('uva-badge');
-  if (UVA_OK) {
-    badge.className = 'uva-badge live';
-    badge.innerHTML = '<span class="dot"></span> Dato del día';
-  } else {
-    badge.className = 'uva-badge error';
-    badge.innerHTML = '<span class="dot"></span> Estimado · sin conexión';
-  }
+  badge.className = 'ubadge '+(UVA_OK?'live':'err');
+  badge.innerHTML = `<span class="dot"></span> ${UVA_OK?'Dato del día':'Estimado — sin conexión'}`;
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 // HELPERS
-// ════════════════════════════════════════
-const fmt$ = n => 'USD ' + Math.round(n).toLocaleString('es-AR');
-const fmtARS = n => '$ ' + Math.round(n).toLocaleString('es-AR');
-const fmtM2 = n => '~' + Math.round(n).toLocaleString('es-AR') + ' m²';
-function set(id, val) {
-  const el = document.getElementById(id);
-  if (el) el.innerHTML = val;
-}
+// ══════════════════════════════════════
+const f$ = n => 'USD '+Math.round(n).toLocaleString('es-AR');
+const fARS = n => '$ '+Math.round(n).toLocaleString('es-AR');
+const fM2 = n => '~'+Math.round(n).toLocaleString('es-AR')+' m²';
+const fN = n => Math.round(n).toLocaleString('es-AR');
+function s(id,v){ const el=document.getElementById(id); if(el) el.innerHTML=v; }
 
-// ════════════════════════════════════════
-// GENERAR INFORME
-// ════════════════════════════════════════
-function generarInforme() {
-  // Leer campos
+// ══════════════════════════════════════
+// GENERAR
+// ══════════════════════════════════════
+function generar() {
   const dir    = document.getElementById('f-dir').value.trim();
   const sec    = document.getElementById('f-sec').value.trim();
   const manz   = document.getElementById('f-manz').value.trim();
   const parc   = document.getElementById('f-parc').value.trim();
-  const frente = parseFloat(document.getElementById('f-frente').value) || 0;
-  const fondoD = parseFloat(document.getElementById('f-fondo-d').value) || 0;
-  const fondoI = parseFloat(document.getElementById('f-fondo-i').value) || 0;
-  const contra = parseFloat(document.getElementById('f-contra').value) || 0;
-  const sup    = parseFloat(document.getElementById('f-sup').value) || 0;
+  const frente = parseFloat(document.getElementById('f-frente').value)||0;
+  const fondoD = parseFloat(document.getElementById('f-fondo-d').value)||0;
+  const fondoI = parseFloat(document.getElementById('f-fondo-i').value)||0;
+  const contra = parseFloat(document.getElementById('f-contra').value)||0;
+  const sup    = parseFloat(document.getElementById('f-sup').value)||0;
   const forma  = document.getElementById('f-forma').value;
   const ue     = document.getElementById('f-ue').value;
   const tipo   = document.getElementById('f-tipo').value;
-  const altura = parseFloat(document.getElementById('f-altura').value) || 0;
+  const altura = parseFloat(document.getElementById('f-altura').value)||0;
   const config = document.getElementById('f-config').value.trim();
-  const vol    = parseFloat(document.getElementById('f-vol').value) || 0;
+  const vol    = parseFloat(document.getElementById('f-vol').value)||0;
   const aph    = document.getElementById('f-aph').value;
-  const incUVA = parseFloat(document.getElementById('f-uva-inc').value) || 0;
-  const alic   = parseFloat(document.getElementById('f-alicuota').value) || 0.15;
-  const pventa = parseFloat(document.getElementById('f-pventa').value) || 3300;
-  const cconst = parseFloat(document.getElementById('f-cconst').value) || 1350;
-  const vterr  = parseFloat(document.getElementById('f-vterreno').value) || 2800;
-  const tc     = parseFloat(document.getElementById('f-tc').value) || TC_DEFAULT;
+  const incUVA = parseFloat(document.getElementById('f-uva-inc').value)||0;
+  const alic   = parseFloat(document.getElementById('f-alic').value)||0.15;
+  const pventa = parseFloat(document.getElementById('f-pventa').value)||3300;
+  const cconst = parseFloat(document.getElementById('f-cconst').value)||1350;
+  const vterr  = parseFloat(document.getElementById('f-vterreno').value)||2800;
+  const tc     = parseFloat(document.getElementById('f-tc').value)||TC_DEF;
+  const suelo  = document.getElementById('f-suelo').value;
+  const freatico = parseFloat(document.getElementById('f-freatico').value)||0;
+  const excav  = parseFloat(document.getElementById('f-excav').value)||0;
+  const edenorZona = document.getElementById('f-edenor').value.trim();
+  const obs    = document.getElementById('f-obs').value.trim();
 
-  // Validación básica
-  if (!dir || !frente || !sup || !vol || !incUVA) {
+  if(!dir||!frente||!sup||!vol||!incUVA) {
     alert('Completá al menos: dirección, frente, superficie, volumetría admitida e incidencia UVA.');
     return;
   }
 
   // ── CÁLCULOS ──
-  const uvaARS = UVA_ARS || 1580;
-  const uvaUSD = uvaARS / tc;
+  const uvaARS = UVA_ARS||1623;
+  const uvaUSD = uvaARS/tc;
+  const A1 = Math.round(vol*0.80);
+  const A2 = Math.round(sup*2);
+  const base = Math.max(0,A1-A2);
+  const B_usd = incUVA*uvaUSD;
+  const plus = base*B_usd*alic;
+  const pl = altura+7;
 
-  // Plusvalía
-  const A1_m2 = Math.round(vol * 0.80);
-  const A2_m2 = Math.round(sup * 2);               // FOT 2 × sup
-  const baseImp = Math.max(0, A1_m2 - A2_m2);
-  const B_usd_m2 = incUVA * uvaUSD;
-  const plusvaliaUSD = baseImp * B_usd_m2 * alic;
-  const planolimite = altura + 7;                  // estimado estándar USAA
-
-  // Sup vendible
-  const supVendible = Math.round(vol * 0.87 * 0.87); // bruto × rel vendible × -circ
-  const supBruta = vol;
+  // Distribución por planta (estimado EM)
+  const pb = Math.round(vol*0.105);
+  const nPisos = config ? (config.match(/(\d+)\s*piso/i)?.[1]||7) : 7;
+  const tipom2 = Math.round((vol-pb-80-60)*0.88/nPisos);
+  const r1 = Math.round(vol*0.065);
+  const r2 = Math.round(vol*0.04);
+  const supVend = Math.round(vol*0.87);
+  const supVendNet = Math.round(supVend*0.87);
 
   // Costos
-  const dem_cant = Math.round(sup * 1.7);
-  const dem_tot  = dem_cant * 80 + dem_cant * 30;
-  const const_cant = supVendible;
-  const const_tot  = const_cant * cconst;
-  const sub_cant   = Math.round(sup * 0.8);
-  const sub_tot    = sub_cant * 800;
-  const circ_cant  = Math.round(supBruta * 0.13);
-  const circ_tot   = circ_cant * 700;
-  const sub_const  = const_tot + sub_tot + circ_tot;
-  const terr_tot   = sup * vterr;
-  const hon1       = const_tot * 0.08;
-  const hon3       = const_tot * 0.02;
-  const sub_hon    = hon1 + 12000 + hon3;
-  const der_tot    = vol * 25 + 8000;
-  const costoTotal = dem_tot + sub_const + terr_tot + sub_hon + der_tot + plusvaliaUSD;
+  const demCant = Math.round(sup*1.7);
+  const d1t = demCant*80; const d2t = demCant*30; const dsub = d1t+d2t;
+  const c1t = supVendNet*cconst; const c2t = Math.round(sup*0.8)*800;
+  const c3t = Math.round(vol*0.13)*700; const csub = c1t+c2t+c3t;
+  const terr = sup*vterr;
+  const h1 = c1t*0.08; const h3 = c1t*0.02; const hsub = h1+12000+h3;
+  const dr1t = vol*25+8000; const drsub = dr1t;
+  const costoTotal = dsub+csub+terr+hsub+drsub+plus;
+  const ingViv = supVendNet*pventa; const ingCoch = 144000; const ingTotal = ingViv+ingCoch;
+  const res = ingTotal-costoTotal;
+  const margen = (res/ingTotal*100).toFixed(1);
 
-  // Ingresos
-  const ingViv    = supVendible * pventa;
-  const ingCoch   = 144000;
-  const ingTotal  = ingViv + ingCoch;
-  const resultado = ingTotal - costoTotal;
-  const margen    = (resultado / ingTotal * 100).toFixed(1);
-
-  // ── RENDER HEADER ──
-  const smp = [sec, manz, parc].filter(Boolean).join('-');
-  set('rh-title', dir || '—');
-  set('rh-smp', smp ? 'SMP ' + smp : '—');
-  set('rh-ue', ue || '—');
-  set('rh-frente', frente + ' m frente');
-  set('rh-sup', '~' + sup + ' m²');
+  // ── HEADER ──
+  const smp = [sec,manz,parc].filter(Boolean).join('-');
+  s('rh-title', dir||'—');
+  s('rh-smp', smp?'SMP '+smp:'—');
+  s('rh-ue', ue||'—');
+  s('rh-frente', frente+' m frente');
+  s('rh-sup', '~'+sup+' m²');
+  const now = new Date().toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'});
+  s('rh-date', 'Generado: '+now+(UVA_OK?' · UVA: '+fARS(uvaARS)+' (dato del día)'
+    :' · UVA: '+fARS(uvaARS)+' (estimado)'));
+  document.getElementById('pdf-date').textContent = now;
 
   // ── ALERTA FRENTE ──
-  const alertFrente = document.getElementById('alert-frente');
-  if (frente > 0 && frente < 8.66) {
-    alertFrente.classList.remove('hidden');
-    set('alert-frente-txt', `<strong>Condición crítica:</strong> Frente ${frente} m (menor al mínimo de 8,66 m). Activa restricciones en escalera mínima (1,10 m), circulación interna (0,95 m) y cálculo de EELMI. Verificar en cada parámetro afectado.`);
-  } else {
-    alertFrente.classList.add('hidden');
-  }
+  const af = document.getElementById('alert-frente');
+  if(frente>0&&frente<8.66){
+    af.classList.remove('hidden');
+    s('alert-frente-txt',`<strong>Condición crítica:</strong> Frente ${frente} m (menor al mínimo de 8,66 m). Activa restricciones en escalera mínima (1,10 m), circulación interna (0,95 m) y cálculo de EELMI.`);
+  } else af.classList.add('hidden');
   document.getElementById('alert-info').classList.add('hidden');
 
-  // ── SEC 1: Análisis Urbanístico ──
-  set('p-ue', ue ? `${ue}<br><span class="tag tag-info">Actualizado por Ley 6776, BOCBA 7026, 26/12/2024</span>` : '—');
-  set('p-altura', altura ? `${altura} m` : '—');
-  set('p-config', config || '—');
-  set('p-tipo', tipo || '—');
-  const sepNote = frente < 8.66 ? '<br><span class="tag tag-warn">⚠ Frente crítico — verificar reducción aplicable</span>' : '';
-  set('p-sep', '6,00 m (frente > 10 m)' + sepNote);
-  set('p-planolimite', planolimite ? `~${planolimite} m (estimado)` : '—');
+  // ── SEC 1 ──
+  const aphMap={no:'<span class="tag tok">Sin protección — Demolición admitida</span>',cat1:'<span class="tag twarn">Catalogado Cat. 1 — sin demolición</span>',cat2:'<span class="tag twarn">Catalogado Cat. 2</span>',cat3:'<span class="tag tneu">Catalogado Cat. 3</span>'};
+  s('p-ue', ue?`${ue} <span class="tag tinfo">Ley 6776/2024 · BOCBA 7026 · 26/12/2024</span>`:'—');
+  s('p-altura', altura?`${altura} m`:'—');
+  s('p-config', config||'—');
+  s('p-tipo', tipo||'—');
+  s('p-sep','6,00 m (frente > 10 m)'+(frente<8.66?'<br><span class="tag twarn">⚠ Frente crítico — verificar reducción</span>':''));
+  s('p-pl', altura?`~${pl} m (estimado)`:'—');
 
-  // ── SEC 2: Geometría ──
-  set('p-frente-v', frente ? `${frente} m — Sobre calle Salguero` : '—');
-  set('p-fondos', fondoD || fondoI ? `${fondoD} m (der.) / ${fondoI} m (izq.)` : '—');
-  set('p-contra-v', contra ? `${contra} m` : '—');
-  set('p-sup-v', sup ? `~${sup} m²` : '—');
-  set('p-forma-v', forma || '—');
+  // ── SEC 2 ──
+  s('p-frente', frente?`${frente} m`:'—');
+  s('p-fondos', fondoD||fondoI?`${fondoD} m (der.) / ${fondoI} m (izq.)`:'—');
+  s('p-contra', contra?`${contra} m`:'—');
+  s('p-sup', sup?`~${sup} m²`:'—');
+  s('p-forma', forma||'—');
 
-  // ── SEC 3: APH ──
-  const aphMap = { '': '<span class="tag tag-empty"></span>', no: '<span class="tag tag-ok">Sin protección — Demolición admitida</span>', cat1: '<span class="tag tag-warn">Catalogado Cat. 1 — sin demolición</span>', cat2: '<span class="tag tag-warn">Catalogado Cat. 2</span>', cat3: '<span class="tag tag-neutral">Catalogado Cat. 3</span>' };
-  set('p-aph', aphMap[aph] || '—');
+  // ── SEC 3: Distribución ──
+  s('d-pb', `~${pb} m²`);
+  s('d-tipo', `~${tipom2} m²/piso`);
+  s('d-tipo-note', `${nPisos} pisos = ~${fN(tipom2*nPisos)} m² totales`);
+  s('d-r1', `~${r1} m²`);
+  s('d-r2', `~${r2} m²`);
+  s('d-total', fM2(vol));
+  s('d-vend', fM2(supVendNet));
 
-  // ── SEC 4: Plusvalía ──
-  set('p-inc-uva', incUVA ? `${incUVA} UVA/m² <span class="tag tag-neutral">Manzana ${manz || '—'}</span>` : '—');
-  set('p-b-val', `${fmtARS(incUVA * uvaARS)}/m² ≈ ${fmt$(B_usd_m2)}/m²`);
-  set('p-a1', `A1 = ${A1_m2} m² × ${fmt$(B_usd_m2)}/m² = ${fmt$(A1_m2 * B_usd_m2)}`);
-  set('p-a2', `${A2_m2} m² (FOT 2 × ${sup} m²)`);
-  set('p-plusvalia', `<strong>${fmt$(plusvaliaUSD)}</strong>`);
+  // ── SEC 4 ──
+  s('p-aph', aphMap[aph]||'—');
 
-  // ── SEC 5: Costos ──
-  set('c-dem-cant', `~${dem_cant} m²`);
-  set('c-dem-tot', dem_cant * 80);
-  set('c-esc-cant', `~${dem_cant} m²`);
-  set('c-esc-tot', dem_cant * 30);
-  set('c-sub-dem', dem_cant * 80 + dem_cant * 30);
-  set('c-const-cant', `${const_cant} m²`);
-  set('c-const-unit', cconst);
-  set('c-const-tot', Math.round(const_tot).toLocaleString('es-AR'));
-  set('c-sub-cant', `~${sub_cant} m²`);
-  set('c-sub-tot', Math.round(sub_tot).toLocaleString('es-AR'));
-  set('c-circ-cant', `${circ_cant} m²`);
-  set('c-circ-tot', Math.round(circ_tot).toLocaleString('es-AR'));
-  set('c-sub-const', Math.round(sub_const).toLocaleString('es-AR'));
-  set('c-terr-cant', `${sup} m²`);
-  set('c-terr-unit', vterr);
-  set('c-terr-tot', Math.round(terr_tot).toLocaleString('es-AR'));
-  set('c-sub-terr', Math.round(terr_tot).toLocaleString('es-AR'));
-  set('c-hon1', Math.round(hon1).toLocaleString('es-AR'));
-  set('c-hon3', Math.round(hon3).toLocaleString('es-AR'));
-  set('c-sub-hon', Math.round(sub_hon).toLocaleString('es-AR'));
-  set('c-der-cant', `${vol} m²`);
-  set('c-der-tot', Math.round(der_tot).toLocaleString('es-AR'));
-  set('c-sub-der', Math.round(der_tot).toLocaleString('es-AR'));
-  set('c-plus-nota', `${baseImp} m² × ${fmt$(B_usd_m2)}/m² × ${(alic*100).toFixed(0)}% · UVA: ${fmtARS(uvaARS)}`);
-  set('c-plus-tot', fmt$(plusvaliaUSD));
-  set('c-total', fmt$(costoTotal));
+  // ── SEC 5 ──
+  const sueloMap={'':'Por determinar — estudio pendiente','pilotes':'Pilotes de concreto in situ ∅ 30-40 cm','losa':'Losa compensada','zapatas':'Zapatas corridas'};
+  s('t-suelo', sueloMap[suelo]||sueloMap['']);
+  s('t-freatico', freatico?`~${freatico} m bajo cota de parcela`:'Variable en Palermo — verificar carta freática GCBA');
+  s('t-excav', excav?`~${excav} m bajo cota de parcela`:'~3,5–4,0 m (estimado para 1 nivel subsuelo)');
+  s('t-edenor', edenorZona?`Zona ${edenorZona} — Solicitar factibilidad de potencia. Transformadores en frente exiguo — prever previsión.<br><span style="font-size:11px;color:var(--ink-soft)">Cinturón Digital GCBA (CUR art. 6.9)</span>`:'Solicitar factibilidad de potencia. Frente exiguo — prever transformadores.<br><span style="font-size:11px;color:var(--ink-soft)">Cinturón Digital GCBA (CUR art. 6.9)</span>');
 
-  // ── SEC 6: Indicadores ──
-  set('e-vend-cant', `${supVendible} m²`);
-  set('e-pventa', `USD ${pventa}/m²`);
-  set('e-ing-viv', fmt$(ingViv));
-  set('e-ing-total', fmt$(ingTotal));
-  set('e-inversion', fmt$(costoTotal));
-  set('e-resultado', resultado > 0
-    ? `<span class="num-pos">${fmt$(resultado)}</span>`
-    : `<span class="num-neg">${fmt$(resultado)}</span>`);
+  // ── SEC 6: Plusvalía ──
+  s('p-inc', incUVA?`${incUVA} UVA/m² <span class="tag tneu">Manzana ${manz||'—'}</span>`:'—');
+  s('p-b', `${fARS(incUVA*uvaARS)}/m² ≈ ${f$(B_usd)}/m²`);
+  s('p-a1', `${A1} m² × ${f$(B_usd)}/m² = ${f$(A1*B_usd)}`);
+  s('p-a2', `${A2} m² (FOT 2 × ${sup} m²)`);
+  s('p-base', `${base} m²`);
+  s('p-alic-v', `${(alic*100).toFixed(0)}%`);
+  s('p-plus', `<strong>${f$(plus)}</strong>`);
 
-  // KPIs
-  set('k-sup', `${sup} m²`);
-  set('k-vol', fmtM2(supBruta));
-  set('k-vend', fmtM2(supVendible));
-  set('k-costo-m2', `USD ${Math.round(costoTotal / supVendible).toLocaleString('es-AR')}/m²`);
-  set('k-pventa', `USD ${pventa}/m²`);
-  set('k-plus', `–${fmt$(plusvaliaUSD)}`);
-  set('k-margen', `${margen}%`);
+  // ── SEC 7: Costos ──
+  s('c-d1',`~${demCant} m²`);s('c-d1t',fN(d1t));s('c-d2',`~${demCant} m²`);s('c-d2t',fN(d2t));s('c-dsub',fN(dsub));
+  s('c-c1',`${supVendNet} m²`);s('c-cu',cconst);s('c-c1t',fN(c1t));
+  s('c-c2',`~${Math.round(sup*0.8)} m²`);s('c-c2t',fN(c2t));
+  s('c-c3',`${Math.round(vol*0.13)} m²`);s('c-c3t',fN(c3t));s('c-csub',fN(csub));
+  s('c-t1',`${sup} m²`);s('c-tu',vterr);s('c-t1t',fN(terr));s('c-tsub',fN(terr));
+  s('c-h1',fN(h1));s('c-h3',fN(h3));s('c-hsub',fN(hsub));
+  s('c-dr1',`${vol} m²`);s('c-dr1t',fN(dr1t));s('c-drsub',fN(drsub));
+  s('c-pnota',`${base} m² × ${f$(B_usd)}/m² × ${(alic*100).toFixed(0)}% · UVA: ${fARS(uvaARS)}`);
+  s('c-ptot',f$(plus));s('c-total',f$(costoTotal));
+
+  // ── SEC 8: Indicadores ──
+  s('e-vc',`${supVendNet} m²`);s('e-pv',`USD ${pventa}/m²`);s('e-iv',f$(ingViv));
+  s('e-it',f$(ingTotal));s('e-inv',f$(costoTotal));
+  s('e-res',res>0?`<span class="npos">${f$(res)}</span>`:`<span class="nneg">${f$(res)}</span>`);
+  s('k-sup',`${sup} m²`);s('k-vol',fM2(vol));s('k-vend',fM2(supVendNet));
+  s('k-cm2',`USD ${fN(costoTotal/supVendNet)}/m²`);s('k-pv',`USD ${pventa}/m²`);
+  s('k-plus',`–${f$(plus)}`);s('k-margen',`${margen}%`);
+
+  // ── SEC 10: Observaciones ──
+  document.getElementById('obs-display').value = obs||'Sin observaciones adicionales.';
 
   // Quitar skeleton
-  ['sec1','sec2','sec3','sec4','sec5','sec6'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) { el.classList.remove('skeleton'); el.classList.add('filled'); }
+  ['sec1','sec2','sec3','sec4','sec5','sec6','sec7','sec8'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.classList.remove('skeleton');el.classList.add('filled')}
   });
 
-  // Scroll al informe
-  document.querySelector('.report-body').scrollIntoView({ behavior: 'smooth' });
+  document.querySelector('.report').scrollIntoView({behavior:'smooth'});
 }
 
-// ════════════════════════════════════════
-// TOGGLE SECTIONS
-// ════════════════════════════════════════
-function toggleSec(header) {
-  header.closest('.section-card').classList.toggle('open');
+// ══════════════════════════════════════
+// PDF
+// ══════════════════════════════════════
+function descargarPDF() {
+  const title = document.getElementById('rh-title').textContent.trim();
+  const orig = document.title;
+  document.title = title ? `Prefactibilidad — ${title}` : 'Prefactibilidad Urbana CABA';
+  window.print();
+  document.title = orig;
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════
+// TOGGLE
+// ══════════════════════════════════════
+function tog(head){ head.closest('.sc').classList.toggle('open'); }
+
+// ══════════════════════════════════════
 // INIT
-// ════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
+// ══════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('pdf-date').textContent = new Date().toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'});
   fetchUVA();
-  document.getElementById('f-tc').addEventListener('change', renderUVAStrip);
+  document.getElementById('f-tc').addEventListener('change', renderUVA);
 });
 </script>
 </body>

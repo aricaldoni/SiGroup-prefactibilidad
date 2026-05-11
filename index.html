@@ -65,57 +65,55 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 /* ══ FORM PANEL ══ */
 .form-panel{
   background:var(--form-bg);
-  padding:28px 36px 32px;
+  padding:24px 36px 28px;
   border-bottom:1px solid var(--form-border);
 }
-.form-panel-header{margin-bottom:22px}
+.form-panel-header{margin-bottom:20px}
 .form-panel-header h2{
   font-family:'Fraunces',serif;font-size:19px;font-weight:300;
-  color:#fff;letter-spacing:.01em;margin-bottom:3px;
+  color:#ffffff;letter-spacing:.01em;margin-bottom:4px;
 }
-.form-panel-header p{font-size:11.5px;color:#3d4260}
+.form-panel-header p{font-size:12px;color:#a0a8c0}
 .form-panel-header p span{color:var(--form-accent)}
 
-.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px 18px}
-.fg{display:flex;flex-direction:column;gap:5px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px 20px}
+.fg{display:flex;flex-direction:column;gap:6px}
 .fg.w2{grid-column:span 2}.fg.wall{grid-column:1/-1}
 .fsec{
   grid-column:1/-1;
   font-family:'DM Mono',monospace;font-size:9px;
   text-transform:uppercase;letter-spacing:.16em;
-  color:var(--form-accent);margin-top:8px;padding-bottom:4px;
+  color:var(--form-accent);margin-top:10px;padding-bottom:6px;
   border-bottom:1px solid var(--form-border);
 }
-.fdiv{grid-column:1/-1;border:none;border-top:1px solid var(--form-border);margin:2px 0}
 
 label{
-  font-family:'DM Mono',monospace;font-size:10px;
-  text-transform:uppercase;letter-spacing:.1em;color:#5a6278;
+  font-family:'DM Sans',sans-serif;font-size:12.5px;
+  font-weight:500;color:#ffffff;letter-spacing:0;
 }
 label .req{color:var(--form-accent)}
 label .hint{
-  font-family:'DM Sans',sans-serif;font-size:10.5px;
-  text-transform:none;letter-spacing:0;
-  color:#2e3450;display:block;margin-top:1px;
+  font-size:11px;font-weight:400;
+  color:#7080a0;display:block;margin-top:1px;
 }
 input,select{
-  background:var(--form-input);border:1px solid var(--form-border);
-  border-radius:4px;padding:9px 11px;
-  color:#cdd5f0;font-family:'DM Sans',sans-serif;font-size:13px;
+  background:#1c2035;border:1px solid #2c3554;
+  border-radius:5px;padding:10px 12px;
+  color:#ffffff;font-family:'DM Sans',sans-serif;font-size:13.5px;
   transition:border .15s;width:100%;
 }
-input:focus,select:focus{outline:none;border-color:var(--form-accent)}
-input::placeholder{color:#2a2f45}
-select option{background:#161820}
+input:focus,select:focus{outline:none;border-color:var(--form-accent);background:#1f2540}
+input::placeholder{color:#3d4f70}
+select option{background:#1c2035;color:#ffffff}
 textarea{
-  background:var(--form-input);border:1px solid var(--form-border);
-  border-radius:4px;padding:9px 11px;color:#cdd5f0;
-  font-family:'DM Sans',sans-serif;font-size:13px;
+  background:#1c2035;border:1px solid #2c3554;
+  border-radius:5px;padding:10px 12px;color:#ffffff;
+  font-family:'DM Sans',sans-serif;font-size:13.5px;
   width:100%;resize:vertical;min-height:72px;
   transition:border .15s;
 }
 textarea:focus{outline:none;border-color:var(--form-accent)}
-textarea::placeholder{color:#2a2f45}
+textarea::placeholder{color:#3d4f70}
 
 .btn-gen{
   margin-top:20px;
@@ -392,68 +390,62 @@ textarea::placeholder{color:#2a2f45}
   </div>
   <div class="form-grid">
 
-    <div class="fsec">Identificación</div>
+    <div class="fsec">Parcela — datos del SMP y Ciudad 3D</div>
+
     <div class="fg w2">
       <label>Dirección <span class="req">*</span></label>
       <input type="text" id="f-dir" placeholder="Ej: Salguero, Jerónimo 188"/>
     </div>
-    <div class="fg"><label>Sección <span class="req">*</span><span class="hint">Número de sección catastral</span></label><input type="text" id="f-sec" placeholder="017"/></div>
-    <div class="fg"><label>Manzana <span class="req">*</span></label><input type="text" id="f-manz" placeholder="087B"/></div>
-    <div class="fg"><label>Parcela <span class="req">*</span></label><input type="text" id="f-parc" placeholder="035"/></div>
-
-    <div class="fsec">Geometría del lote · Plancheta Catastral DGCBA</div>
-    <div class="fg"><label>Frente / L.O. (m) <span class="req">*</span></label><input type="number" id="f-frente" placeholder="7.89" step="0.01"/></div>
-    <div class="fg"><label>Fondo derecho (m)</label><input type="number" id="f-fondo-d" placeholder="25.68" step="0.01"/></div>
-    <div class="fg"><label>Fondo izquierdo (m)</label><input type="number" id="f-fondo-i" placeholder="26.02" step="0.01"/></div>
-    <div class="fg"><label>Contrafrente (m)</label><input type="number" id="f-contra" placeholder="8.90" step="0.01"/></div>
-    <div class="fg"><label>Superficie total (m²) <span class="req">*</span></label><input type="number" id="f-sup" placeholder="201" step="1"/></div>
-    <div class="fg"><label>Forma de parcela</label>
-      <select id="f-forma"><option value="">Seleccionar…</option><option>Regular</option><option>Trapezoidal irregular</option><option>Irregular</option><option>Triangular</option></select>
-    </div>
-
-    <div class="fsec">Normativa urbanística · Ciudad 3D</div>
     <div class="fg">
-      <label>Unidad de Edificabilidad <span class="req">*</span><span class="hint">Verificar en Ciudad 3D</span></label>
-      <select id="f-ue"><option value="">Seleccionar…</option><option value="U.S.A.A.">U.S.A.A. — Altura Alta</option><option value="U.S.A.M.">U.S.A.M. — Altura Media</option><option value="U.S.A.B.">U.S.A.B. — Altura Baja</option><option value="R2b">R2b — Residencial</option><option value="Otra">Otra</option></select>
+      <label>SMP <span class="req">*</span><span class="hint">Sección-Manzana-Parcela</span></label>
+      <input type="text" id="f-smp" placeholder="017-087B-035"/>
     </div>
     <div class="fg">
-      <label>Tipología edilicia</label>
-      <select id="f-tipo"><option value="">Seleccionar…</option><option>Entre Medianeras (EM)</option><option>Perímetro libre (PL)</option><option>Semiperímetro libre (SPL)</option><option>Aislado</option></select>
+      <label>Frente / L.O. (m) <span class="req">*</span></label>
+      <input type="number" id="f-frente" placeholder="7.89" step="0.01"/>
     </div>
-    <div class="fg"><label>Altura máx. sobre L.O. (m) <span class="req">*</span><span class="hint">CUR art. 6.2.3 / Ciudad 3D</span></label><input type="number" id="f-altura" placeholder="22.80" step="0.01"/></div>
-    <div class="fg"><label>Configuración</label><input type="text" id="f-config" placeholder="PB + 7 pisos + 2 retiros"/></div>
-    <div class="fg"><label>Sup. volumetría admitida (m²) <span class="req">*</span><span class="hint">Confirmar en Ciudad 3D</span></label><input type="number" id="f-vol" placeholder="1525" step="1"/></div>
     <div class="fg">
-      <label>Protección Patrimonial (APH)</label>
-      <select id="f-aph"><option value="no">Sin protección — Demolición admitida</option><option value="cat1">Catalogado Cat. 1</option><option value="cat2">Catalogado Cat. 2</option><option value="cat3">Catalogado Cat. 3</option></select>
+      <label>Superficie del lote (m²) <span class="req">*</span></label>
+      <input type="number" id="f-sup" placeholder="201" step="1"/>
     </div>
-
-    <div class="fsec">Plusvalía Urbana · Ley 6062 · Anexo BOCBA 5522</div>
-    <div class="fg"><label>Incidencia manzana (UVA/m²) <span class="req">*</span><span class="hint">Buscar manzana en Anexo Ley 6062</span></label><input type="number" id="f-uva-inc" placeholder="921" step="1"/></div>
     <div class="fg">
-      <label>Alícuota zona<span class="hint">Art. 5 Ley 6062</span></label>
-      <select id="f-alic"><option value="0.10">10% — zona básica</option><option value="0.15" selected>15% — zona intermedia</option><option value="0.20">20% — zona alta</option></select>
+      <label>Volumetría admitida (m²) <span class="req">*</span><span class="hint">Confirmar en Ciudad 3D</span></label>
+      <input type="number" id="f-vol" placeholder="1525" step="1"/>
     </div>
-
-    <div class="fsec">Variables económicas · Mercado / referencia</div>
-    <div class="fg"><label>Precio venta estimado (USD/m²)<span class="hint">Zonaprop / portal inmobiliario</span></label><input type="number" id="f-pventa" placeholder="3300" step="50"/></div>
-    <div class="fg"><label>Costo construcción (USD/m²)<span class="hint">Índice CAC/CEDU — Cat. A</span></label><input type="number" id="f-cconst" placeholder="1350" step="50"/></div>
-    <div class="fg"><label>Valor terreno estimado (USD/m²)</label><input type="number" id="f-vterreno" placeholder="2800" step="50"/></div>
-    <div class="fg"><label>Tipo de cambio ref. (ARS/USD)</label><input type="number" id="f-tc" placeholder="1007" step="10"/></div>
-
-    <div class="fsec">Aspectos técnicos · referencia profesional</div>
     <div class="fg">
-      <label>Tipo suelo / cimentación probable<span class="hint">Definir luego de estudio de suelos</span></label>
-      <select id="f-suelo"><option value="">Por determinar — estudio pendiente</option><option value="pilotes">Pilotes de concreto in situ ∅ 30-40 cm</option><option value="losa">Losa compensada</option><option value="zapatas">Zapatas corridas sobre relleno</option></select>
+      <label>Altura máx. sobre L.O. (m) <span class="req">*</span><span class="hint">Ciudad 3D / CUR art. 6.2.3</span></label>
+      <input type="number" id="f-altura" placeholder="22.80" step="0.01"/>
     </div>
-    <div class="fg"><label>Nivel freático estimado (m)<span class="hint">Palermo: variable — verificar GCBA</span></label><input type="number" id="f-freatico" placeholder="Ej: 3.5" step="0.5"/></div>
-    <div class="fg"><label>Profundidad excavación subsuelo (m)</label><input type="number" id="f-excav" placeholder="Ej: 3.5" step="0.5"/></div>
-    <div class="fg"><label>Zona Edenor<span class="hint">Palermo = zona norte</span></label><input type="text" id="f-edenor" placeholder="Zona norte Palermo"/></div>
+    <div class="fg">
+      <label>Incidencia manzana (UVA/m²) <span class="req">*</span><span class="hint">Anexo Ley 6062 — BOCBA 5522</span></label>
+      <input type="number" id="f-uva-inc" placeholder="921" step="1"/>
+    </div>
+    <div class="fg">
+      <label>Precio de venta est. (USD/m²)<span class="hint">Default: 3.300 — Zonaprop Palermo Q1-2025</span></label>
+      <input type="number" id="f-pventa" placeholder="3300" step="50"/>
+    </div>
 
-    <div class="fg wall">
-      <label>Observaciones del analista<span class="hint">Notas libres que aparecen al final del informe</span></label>
-      <textarea id="f-obs" placeholder="Ej: Edificio existente de 2 pisos con sótano. Se recomienda iniciar estudio de suelos antes del anteproyecto…"></textarea>
-    </div>
+    <!-- Campos ocultos con defaults — no se muestran al usuario -->
+    <input type="hidden" id="f-sec" value=""/>
+    <input type="hidden" id="f-manz" value=""/>
+    <input type="hidden" id="f-parc" value=""/>
+    <input type="hidden" id="f-fondo-d" value=""/>
+    <input type="hidden" id="f-fondo-i" value=""/>
+    <input type="hidden" id="f-contra" value=""/>
+    <input type="hidden" id="f-forma" value=""/>
+    <input type="hidden" id="f-ue" value="U.S.A.A."/>
+    <input type="hidden" id="f-tipo" value="Entre Medianeras (EM)"/>
+    <input type="hidden" id="f-config" value=""/>
+    <input type="hidden" id="f-aph" value="no"/>
+    <input type="hidden" id="f-alic" value="0.15"/>
+    <input type="hidden" id="f-cconst" value="1350"/>
+    <input type="hidden" id="f-vterreno" value="2800"/>
+    <input type="hidden" id="f-tc" value="1007"/>
+    <input type="hidden" id="f-suelo" value=""/>
+    <input type="hidden" id="f-freatico" value=""/>
+    <input type="hidden" id="f-excav" value=""/>
+    <input type="hidden" id="f-edenor" value=""/>
+    <input type="hidden" id="f-obs" value=""/>
 
   </div>
   <button class="btn-gen" onclick="generar()">
@@ -824,7 +816,7 @@ async function fetchUVA() {
 }
 
 function renderUVA() {
-  const tc = parseFloat(document.getElementById('f-tc').value)||TC_DEF;
+  const tc = TC_DEF;
   const usd = UVA_ARS/tc;
   const arsStr = '$ '+Math.round(UVA_ARS).toLocaleString('es-AR');
   const usdStr = 'USD '+usd.toFixed(4);
@@ -857,35 +849,33 @@ function s(id,v){ const el=document.getElementById(id); if(el) el.innerHTML=v; }
 // ══════════════════════════════════════
 function generar() {
   const dir    = document.getElementById('f-dir').value.trim();
-  const sec    = document.getElementById('f-sec').value.trim();
-  const manz   = document.getElementById('f-manz').value.trim();
-  const parc   = document.getElementById('f-parc').value.trim();
+  const smpRaw = document.getElementById('f-smp').value.trim();
+  const smpParts = smpRaw.split('-');
+  const sec  = smpParts[0]||'';
+  const manz = smpParts[1]||'';
+  const parc = smpParts[2]||'';
   const frente = parseFloat(document.getElementById('f-frente').value)||0;
-  const fondoD = parseFloat(document.getElementById('f-fondo-d').value)||0;
-  const fondoI = parseFloat(document.getElementById('f-fondo-i').value)||0;
-  const contra = parseFloat(document.getElementById('f-contra').value)||0;
+  const fondoD = 0; const fondoI = 0; const contra = 0; const forma = '';
   const sup    = parseFloat(document.getElementById('f-sup').value)||0;
-  const forma  = document.getElementById('f-forma').value;
-  const ue     = document.getElementById('f-ue').value;
-  const tipo   = document.getElementById('f-tipo').value;
-  const altura = parseFloat(document.getElementById('f-altura').value)||0;
-  const config = document.getElementById('f-config').value.trim();
   const vol    = parseFloat(document.getElementById('f-vol').value)||0;
-  const aph    = document.getElementById('f-aph').value;
+  const altura = parseFloat(document.getElementById('f-altura').value)||0;
+  const ue     = 'U.S.A.A.';
+  const tipo   = 'Entre Medianeras (EM)';
+  const config = '';
+  const aph    = 'no';
   const incUVA = parseFloat(document.getElementById('f-uva-inc').value)||0;
-  const alic   = parseFloat(document.getElementById('f-alic').value)||0.15;
+  const alic   = 0.15;
   const pventa = parseFloat(document.getElementById('f-pventa').value)||3300;
-  const cconst = parseFloat(document.getElementById('f-cconst').value)||1350;
-  const vterr  = parseFloat(document.getElementById('f-vterreno').value)||2800;
-  const tc     = parseFloat(document.getElementById('f-tc').value)||TC_DEF;
-  const suelo  = document.getElementById('f-suelo').value;
-  const freatico = parseFloat(document.getElementById('f-freatico').value)||0;
-  const excav  = parseFloat(document.getElementById('f-excav').value)||0;
-  const edenorZona = document.getElementById('f-edenor').value.trim();
-  const obs    = document.getElementById('f-obs').value.trim();
+  const cconst = 1350;
+  const vterr  = 2800;
+  const tc     = 1007;
+  const suelo  = '';
+  const freatico = 0; const excav = 0;
+  const edenorZona = '';
+  const obs    = '';
 
   if(!dir||!frente||!sup||!vol||!incUVA) {
-    alert('Completá al menos: dirección, frente, superficie, volumetría admitida e incidencia UVA.');
+    alert('Completá los 7 campos marcados con * para generar el informe.');
     return;
   }
 
@@ -1038,7 +1028,6 @@ function tog(head){ head.closest('.sc').classList.toggle('open'); }
 document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('pdf-date').textContent = new Date().toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'});
   fetchUVA();
-  document.getElementById('f-tc').addEventListener('change', renderUVA);
 });
 </script>
 </body>
